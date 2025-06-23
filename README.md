@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>曲红绡情感体验设计 - 专业策划方案</title>
+    <title>曲红绡分线体验设计</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -14,15 +14,17 @@
             --love: #f5b7b1;
             --need: #d7bde2;
             --relation: #e8daef;
-            --dark: #5d4037;
-            --light: #f9f2f4;
-            --card-bg: rgba(255, 255, 255, 0.95);
-            --shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            --dark: #e0d7e9;
+            --light: #0a0e1a;
+            --card-bg: rgba(19, 24, 48, 0.8);
+            --shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
             --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             --visual: #b76e79;       /* 视觉冲击 - 红色 */
             --emotion: #e6b0aa;      /* 情感共鸣 - 粉色 */
             --decision: #5d8aa8;     /* 决策压力 - 蓝色 */
             --feedback: #98bf64;     /* 操作反馈 - 绿色 */
+            --starry-bg: #0a0e1a;
+            --lotus-pink: #f8c6d9;
         }
 
         * {
@@ -33,17 +35,108 @@
 
         body {
             font-family: 'Noto Sans SC', sans-serif;
-            background: linear-gradient(135deg, #fff5f7 0%, #f9f2f4 100%);
+            background: var(--starry-bg);
             color: var(--dark);
             line-height: 1.6;
             min-height: 100vh;
             padding: 20px;
             overflow-x: hidden;
+            position: relative;
+        }
+
+        /* 星空背景 */
+        .starry-sky {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+        }
+
+        .star {
+            position: absolute;
+            background-color: #fff;
+            border-radius: 50%;
+            animation: twinkle var(--duration, 4s) infinite ease-in-out;
+        }
+
+        /* 荷花池 */
+        .lotus-pond {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .lotus {
+            position: absolute;
+            bottom: 0;
+            filter: drop-shadow(0 0 8px var(--lotus-pink));
+            animation: sway 8s infinite ease-in-out;
+            opacity: 0.7;
+            z-index: -1;
+        }
+
+        .lotus::before, .lotus::after {
+            content: "";
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--lotus-pink) 0%, transparent 70%);
+        }
+
+        .lotus::before {
+            width: 60px;
+            height: 60px;
+            top: 0;
+            left: 0;
+        }
+
+        .lotus::after {
+            width: 40px;
+            height: 40px;
+            top: 10px;
+            left: 30px;
+        }
+
+        .lotus-leaf {
+            position: absolute;
+            bottom: 0;
+            width: 80px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(0, 128, 0, 0.3);
+            filter: blur(2px);
+            animation: leaf-sway 10s infinite ease-in-out;
+        }
+
+        /* 动画 */
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes sway {
+            0%, 100% { transform: translateX(0) rotate(0deg); }
+            25% { transform: translateX(5px) rotate(2deg); }
+            75% { transform: translateX(-5px) rotate(-2deg); }
+        }
+
+        @keyframes leaf-sway {
+            0%, 100% { transform: translateX(0) rotate(0deg) scale(1); }
+            25% { transform: translateX(8px) rotate(3deg) scale(1.05); }
+            75% { transform: translateX(-8px) rotate(-3deg) scale(0.95); }
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
 
         /* 头部区域 */
@@ -56,7 +149,8 @@
             box-shadow: var(--shadow);
             position: relative;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(183, 110, 121, 0.3);
+            backdrop-filter: blur(10px);
         }
 
         .header-section::before {
@@ -77,11 +171,12 @@
             color: var(--dark);
             position: relative;
             z-index: 2;
+            text-shadow: 0 0 15px rgba(183, 110, 121, 0.7);
         }
 
         .subtitle {
             font-size: 1.3rem;
-            color: #7d5d5d;
+            color: #b0a0c0;
             margin: 0 auto 25px;
             font-weight: 400;
             max-width: 800px;
@@ -96,14 +191,21 @@
         }
 
         .designer-card {
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(40, 45, 70, 0.8);
             padding: 15px 25px;
             border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             display: flex;
             align-items: center;
             gap: 10px;
             font-size: 1.1rem;
+            color: #d0c0e0;
+            transition: var(--transition);
+        }
+
+        .designer-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(183, 110, 121, 0.4);
         }
 
         .designer-card i {
@@ -119,7 +221,8 @@
             margin-bottom: 50px;
             position: relative;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(183, 110, 121, 0.3);
+            backdrop-filter: blur(10px);
         }
 
         .section-header {
@@ -134,6 +237,7 @@
             position: relative;
             display: inline-block;
             margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(183, 110, 121, 0.5);
         }
 
         .section-title::after {
@@ -146,10 +250,11 @@
             height: 4px;
             background: var(--primary);
             border-radius: 2px;
+            box-shadow: 0 0 10px var(--primary);
         }
 
         .chart-description {
-            color: #7d5d5d;
+            color: #b0a0c0;
             max-width: 700px;
             font-size: 1.1rem;
             line-height: 1.7;
@@ -174,9 +279,9 @@
             gap: 25px;
             margin-top: 30px;
             padding: 15px;
-            background: rgba(255, 255, 255, 0.7);
+            background: rgba(40, 45, 70, 0.6);
             border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         }
 
         .legend-item {
@@ -185,15 +290,16 @@
             gap: 10px;
             padding: 8px 15px;
             border-radius: 20px;
-            background: rgba(255, 255, 255, 0.8);
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            background: rgba(50, 55, 80, 0.8);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
             transition: var(--transition);
             cursor: pointer;
+            color: #e0d0f0;
         }
 
         .legend-item:hover {
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 15px rgba(183, 110, 121, 0.4);
         }
 
         .legend-color {
@@ -210,7 +316,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.8);
             z-index: 1000;
             align-items: center;
             justify-content: center;
@@ -218,16 +324,18 @@
         }
 
         .modal-content {
-            background: var(--card-bg);
+            background: linear-gradient(135deg, rgba(30, 35, 60, 0.9) 0%, rgba(40, 45, 75, 0.9) 100%);
             border-radius: 20px;
             width: 90%;
             max-width: 700px;
             padding: 40px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
             position: relative;
             animation: slideUp 0.5s ease;
             max-height: 90vh;
             overflow-y: auto;
+            border: 1px solid rgba(183, 110, 121, 0.3);
+            backdrop-filter: blur(10px);
         }
 
         .close-modal {
@@ -238,6 +346,7 @@
             color: var(--primary);
             cursor: pointer;
             transition: var(--transition);
+            text-shadow: 0 0 8px var(--primary);
         }
 
         .close-modal:hover {
@@ -248,7 +357,7 @@
         .modal-header {
             margin-bottom: 25px;
             padding-bottom: 15px;
-            border-bottom: 2px solid rgba(183, 110, 121, 0.1);
+            border-bottom: 2px solid rgba(183, 110, 121, 0.3);
         }
 
         .modal-title {
@@ -256,12 +365,14 @@
             font-weight: 700;
             color: var(--dark);
             margin-bottom: 5px;
+            text-shadow: 0 0 8px rgba(183, 110, 121, 0.5);
         }
 
         .modal-subtitle {
             font-size: 1.2rem;
             color: var(--primary);
             font-weight: 600;
+            text-shadow: 0 0 5px rgba(183, 110, 121, 0.5);
         }
 
         .modal-body {
@@ -269,11 +380,12 @@
         }
 
         .section-card {
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(50, 55, 80, 0.6);
             border-radius: 12px;
             padding: 20px;
             margin-bottom: 25px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(183, 110, 121, 0.2);
         }
 
         .section-title-card {
@@ -283,11 +395,13 @@
             margin-bottom: 15px;
             display: flex;
             align-items: center;
+            text-shadow: 0 0 5px rgba(183, 110, 121, 0.3);
         }
 
         .section-title-card i {
             margin-right: 10px;
             color: var(--primary);
+            text-shadow: 0 0 8px var(--primary);
         }
 
         .emotion-section {
@@ -303,12 +417,14 @@
             border-radius: 10px;
             flex: 1;
             max-width: 45%;
-            background: rgba(183, 110, 121, 0.05);
+            background: rgba(183, 110, 121, 0.15);
+            box-shadow: inset 0 0 15px rgba(183, 110, 121, 0.2);
         }
 
         .emotion-emoji {
             font-size: 3rem;
             margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
         }
 
         .emotion-text {
@@ -321,13 +437,15 @@
             font-size: 2rem;
             color: var(--primary);
             padding: 0 10px;
+            text-shadow: 0 0 8px var(--primary);
         }
 
         .intensity-section {
             margin: 20px 0;
             padding: 15px;
-            background: rgba(183, 110, 121, 0.05);
+            background: rgba(183, 110, 121, 0.15);
             border-radius: 12px;
+            box-shadow: inset 0 0 15px rgba(183, 110, 121, 0.2);
         }
 
         .intensity-header {
@@ -346,11 +464,12 @@
             font-weight: 700;
             color: var(--primary);
             font-size: 1.2rem;
+            text-shadow: 0 0 5px var(--primary);
         }
 
         .intensity-bar {
             height: 10px;
-            background: #e0e0e0;
+            background: rgba(0, 0, 0, 0.3);
             border-radius: 5px;
             overflow: hidden;
         }
@@ -358,22 +477,26 @@
         .intensity-fill {
             height: 100%;
             border-radius: 5px;
+            box-shadow: 0 0 10px var(--primary);
         }
 
         .design-target {
             margin: 25px 0;
             line-height: 1.7;
             font-size: 1.1rem;
+            color: #d0c0e0;
         }
 
         .design-intent {
-            background: rgba(183, 110, 121, 0.08);
+            background: rgba(183, 110, 121, 0.15);
             border-left: 4px solid var(--primary);
             padding: 15px;
             border-radius: 0 8px 8px 0;
             margin: 20px 0;
             font-style: italic;
             position: relative;
+            color: #e0d0f0;
+            box-shadow: inset 0 0 15px rgba(183, 110, 121, 0.2);
         }
 
         .design-intent::before {
@@ -387,6 +510,7 @@
             border-radius: 4px;
             font-size: 0.9rem;
             font-style: normal;
+            box-shadow: 0 0 10px var(--primary);
         }
 
         .key-points {
@@ -411,10 +535,16 @@
             margin-right: 15px;
             flex-shrink: 0;
             font-size: 14px;
+            box-shadow: 0 0 8px var(--primary);
         }
 
         .point-content {
             flex: 1;
+            color: #d0c0e0;
+        }
+
+        .point-content strong {
+            color: var(--dark);
         }
 
         /* 新增的心流分析部分 */
@@ -432,16 +562,17 @@
         }
         
         .flow-card {
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(50, 55, 80, 0.6);
             border-radius: 12px;
             padding: 20px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
             transition: all 0.3s ease;
+            border: 1px solid rgba(183, 110, 121, 0.2);
         }
         
         .flow-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 25px rgba(183, 110, 121, 0.4);
         }
         
         .flow-card-title {
@@ -451,6 +582,7 @@
             margin-bottom: 15px;
             display: flex;
             align-items: center;
+            text-shadow: 0 0 5px rgba(183, 110, 121, 0.3);
         }
         
         .flow-card-title i {
@@ -463,11 +595,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            box-shadow: 0 0 8px var(--primary);
         }
         
         .flow-card-content {
             font-size: 1rem;
-            color: #5d4037;
+            color: #c0b0d0;
             line-height: 1.6;
         }
         
@@ -487,6 +620,7 @@
             font-weight: bold;
             position: absolute;
             left: -15px;
+            text-shadow: 0 0 5px var(--primary);
         }
         
         .flow-analysis-title {
@@ -496,21 +630,23 @@
             margin-bottom: 15px;
             display: flex;
             align-items: center;
+            text-shadow: 0 0 8px rgba(183, 110, 121, 0.5);
         }
         
         .flow-analysis-title i {
             margin-right: 10px;
             color: var(--primary);
+            text-shadow: 0 0 8px var(--primary);
         }
 
         /* 页脚 */
         footer {
             text-align: center;
             padding: 40px 0;
-            color: #7d5d5d;
+            color: #a090b0;
             font-size: 1.05rem;
             margin-top: 50px;
-            border-top: 1px solid rgba(183, 110, 121, 0.1);
+            border-top: 1px solid rgba(183, 110, 121, 0.3);
         }
 
         @keyframes fadeIn {
@@ -560,15 +696,25 @@
             .flow-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .lotus {
+                transform: scale(0.8);
+            }
         }
     </style>
 </head>
 <body>
+    <!-- 星空背景 -->
+    <div class="starry-sky" id="starrySky"></div>
+    
+    <!-- 荷花池 -->
+    <div class="lotus-pond" id="lotusPond"></div>
+    
     <div class="container">
         <!-- 头部区域 -->
         <section class="header-section">
-            <h1>曲红绡情感体验设计</h1>
-            <p class="subtitle">基于NPC分线设计的情绪体验规划 - 从初见到结局的情感旅程设计</p>
+            <h1>曲红绡·分线体验</h1>
+            <p class="subtitle">星河为幕，荷花为伴 - 从初见到结局的体验旅程</p>
             
             <div class="designer-info">
                 <div class="designer-card">
@@ -671,8 +817,8 @@
                         <div class="flow-card-content">
                             <p>通过强烈的视觉元素建立第一印象，形成玩家记忆锚点：</p>
                             <ul>
-                                <li>红唇骨剑的视觉冲击</li>
-                                <li>性感形象与超强战力的视觉盛宴</li>
+                                <li>星空下的红唇骨剑视觉冲击</li>
+                                <li>荷花池畔的性感形象</li>
                                 <li>高潮期战损共修的情欲表现</li>
                                 <li>血色丝带与骨剑特效</li>
                             </ul>
@@ -687,7 +833,7 @@
                         <div class="flow-card-content">
                             <p>通过角色背景与玩家互动建立情感连接：</p>
                             <ul>
-                                <li>罗刹族复仇公主的悲情背景</li>
+                                <li>邪修+长生的悲情背景</li>
                                 <li>为玩家牺牲的剧情设计</li>
                                 <li>功法反噬的宿命矛盾</li>
                                 <li>生日、纪念日等情感事件</li>
@@ -731,7 +877,7 @@
         </section>
 
         <footer>
-            <p>曲红绡分线体验设计 | NPC分线设计方案 | © 2025 郭慧杰（Sevy）</p>
+            <p>曲红绡·体验设计 | NPC分线 | © 2025 郭慧杰（Sevy）</p>
         </footer>
     </div>
 
@@ -782,7 +928,7 @@
                     </div>
                     
                     <div class="design-intent" id="designIntent">
-                        希望通过强烈的视觉冲击和悬念设计，在玩家心中建立"危险且迷人"的第一印象。娇柔跌倒与性感幕后黑手的矛盾组合，配合异常任务线索，为后续关系发展埋下伏笔。
+                        通过强烈的视觉冲击和悬念设计，在玩家心中建立"危险且迷人"的第一印象。娇柔跌倒与性感幕后黑手的矛盾组合，配合异常任务线索，为后续关系发展埋下伏笔。
                     </div>
                 </div>
                 
@@ -800,6 +946,74 @@
     </div>
 
     <script>
+        // 创建星空背景
+        function createStarrySky() {
+            const container = document.getElementById('starrySky');
+            const starCount = 150;
+            
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                
+                // 随机大小（1-3px）
+                const size = Math.random() * 3 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                
+                // 随机位置
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                
+                // 随机闪烁时间
+                star.style.setProperty('--duration', `${Math.random() * 5 + 3}s`);
+                
+                container.appendChild(star);
+            }
+        }
+        
+        // 创建荷花池
+        function createLotusPond() {
+            const container = document.getElementById('lotusPond');
+            const lotusCount = 8;
+            const leafCount = 12;
+            
+            // 创建荷花
+            for (let i = 0; i < lotusCount; i++) {
+                const lotus = document.createElement('div');
+                lotus.classList.add('lotus');
+                
+                // 随机位置
+                lotus.style.left = `${Math.random() * 100}%`;
+                
+                // 随机大小
+                const scale = Math.random() * 0.5 + 0.7;
+                lotus.style.transform = `scale(${scale})`;
+                
+                // 随机动画延迟
+                lotus.style.animationDelay = `${Math.random() * 5}s`;
+                
+                container.appendChild(lotus);
+            }
+            
+            // 创建荷叶
+            for (let i = 0; i < leafCount; i++) {
+                const leaf = document.createElement('div');
+                leaf.classList.add('lotus-leaf');
+                
+                // 随机位置
+                leaf.style.left = `${Math.random() * 100}%`;
+                
+                // 随机大小
+                const scale = Math.random() * 0.8 + 0.5;
+                leaf.style.transform = `scale(${scale})`;
+                
+                // 随机动画延迟
+                leaf.style.animationDelay = `${Math.random() * 5}s`;
+                
+                container.appendChild(leaf);
+            }
+        }
+        
         // 情绪数据 - 每个阶段都有独特的设计意图
         const emotions = [
             { 
@@ -812,14 +1026,14 @@
                 intensity: 30,
                 color: '#b76e79',
                 designTarget: '建立角色第一印象，通过危险与性感的矛盾组合激发玩家探索欲望，为后续情感发展奠定基础。',
-                designIntent: '希望通过强烈的视觉冲击和悬念设计，在玩家心中建立"危险且迷人"的第一印象。娇柔跌倒与性感幕后黑手的矛盾组合，配合异常任务线索，为后续关系发展埋下伏笔。',
+                designIntent: '通过强烈的视觉冲击和悬念设计，在玩家心中建立"危险且迷人"的第一印象。娇柔跌倒与性感幕后黑手的矛盾组合，配合异常任务线索，为后续关系发展埋下伏笔。',
                 keyPoints: [
                     {
                         title: '悬念钩子',
-                        content: '任务异常引发玩家推理欲望，神秘消失留下线索道具，为二次接触创造契机'
+                        content: '任务异常引发玩家推理欲望，神秘消失留下线索道具，为二次接触创造契机具'
                     },
                     {
-                        title: '视觉冲击设计',
+                        title: '视觉冲击',
                         content: '红色主题视觉设计，骨剑道具突出危险特质，性感形象与危险动作形成反差魅力'
                     },
                     {
@@ -993,8 +1207,13 @@
             feedbackIntensity: [60, 75, 80, 90, 85, 70]
         };
         
-        // 创建情感体验图表
+        // 初始化页面
         document.addEventListener('DOMContentLoaded', function() {
+            // 创建星空和荷花
+            createStarrySky();
+            createLotusPond();
+            
+            // 创建情感体验图表
             const ctx = document.getElementById('emotionCoaster').getContext('2d');
             
             // 图表数据
@@ -1030,10 +1249,10 @@
                             display: false
                         },
                         tooltip: {
-                            backgroundColor: 'rgba(255, 255, 255, 0.95)',
-                            titleColor: '#5d4037',
-                            bodyColor: '#7d5d5d',
-                            borderColor: 'rgba(183, 110, 121, 0.3)',
+                            backgroundColor: 'rgba(30, 35, 60, 0.95)',
+                            titleColor: '#e0d7e9',
+                            bodyColor: '#b0a0c0',
+                            borderColor: 'rgba(183, 110, 121, 0.5)',
                             borderWidth: 1,
                             padding: 15,
                             displayColors: false,
@@ -1054,10 +1273,10 @@
                             beginAtZero: true,
                             max: 100,
                             grid: {
-                                color: 'rgba(0, 0, 0, 0.05)'
+                                color: 'rgba(255, 255, 255, 0.1)'
                             },
                             ticks: {
-                                color: '#7d5d5d',
+                                color: '#b0a0c0',
                                 callback: function(value) {
                                     return value + '%';
                                 }
@@ -1065,7 +1284,7 @@
                             title: {
                                 display: true,
                                 text: '情绪强度',
-                                color: '#5d4037',
+                                color: '#e0d7e9',
                                 font: {
                                     weight: 'bold'
                                 }
@@ -1076,7 +1295,7 @@
                                 display: false
                             },
                             ticks: {
-                                color: '#5d4037',
+                                color: '#e0d7e9',
                                 font: {
                                     weight: '500'
                                 }
@@ -1169,10 +1388,10 @@
                     maintainAspectRatio: false,
                     plugins: {
                         tooltip: {
-                            backgroundColor: 'rgba(255, 255, 255, 0.95)',
-                            titleColor: '#5d4037',
-                            bodyColor: '#7d5d5d',
-                            borderColor: 'rgba(183, 110, 121, 0.3)',
+                            backgroundColor: 'rgba(30, 35, 60, 0.95)',
+                            titleColor: '#e0d7e9',
+                            bodyColor: '#b0a0c0',
+                            borderColor: 'rgba(183, 110, 121, 0.5)',
                             borderWidth: 1,
                             padding: 15,
                             displayColors: true,
@@ -1191,10 +1410,10 @@
                             beginAtZero: true,
                             max: 100,
                             grid: {
-                                color: 'rgba(0, 0, 0, 0.05)'
+                                color: 'rgba(255, 255, 255, 0.1)'
                             },
                             ticks: {
-                                color: '#7d5d5d',
+                                color: '#b0a0c0',
                                 callback: function(value) {
                                     return value + '%';
                                 }
@@ -1202,7 +1421,7 @@
                             title: {
                                 display: true,
                                 text: '体验强度',
-                                color: '#5d4037',
+                                color: '#e0d7e9',
                                 font: {
                                     weight: 'bold'
                                 }
@@ -1213,7 +1432,7 @@
                                 display: false
                             },
                             ticks: {
-                                color: '#5d4037',
+                                color: '#e0d7e9',
                                 font: {
                                     weight: '500'
                                 }
