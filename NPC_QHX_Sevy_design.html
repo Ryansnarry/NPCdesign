@@ -20,10 +20,10 @@
             --card-bg: rgba(255, 255, 255, 0.95);
             --shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
             --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            --visual: #b76e79;
-            --emotion: #e6b0aa;
-            --decision: #d98880;
-            --feedback: #d7bde2;
+            --visual: #b76e79;       /* 视觉冲击 - 红色 */
+            --emotion: #e6b0aa;      /* 情感共鸣 - 粉色 */
+            --decision: #5d8aa8;     /* 决策压力 - 蓝色 */
+            --feedback: #98bf64;     /* 操作反馈 - 绿色 */
         }
 
         * {
@@ -574,11 +574,11 @@
             <div class="designer-info">
                 <div class="designer-card">
                     <i class="fas fa-user"></i>
-                    <span>策划：情感体验设计组</span>
+                    <span>策划：郭慧杰（Sevy）</span>
                 </div>
                 <div class="designer-card">
                     <i class="fas fa-calendar"></i>
-                    <span>版本：1.2.0</span>
+                    <span>版本：1.0.0</span>
                 </div>
                 <div class="designer-card">
                     <i class="fas fa-tags"></i>
@@ -591,7 +591,7 @@
         <section class="chart-section">
             <div class="section-header">
                 <h2 class="section-title">情感体验曲线</h2>
-                <p class="chart-description">玩家在攻略曲红绡过程中的情绪波动可视化，展示关键情绪锚点与体验设计节点</p>
+                <p class="chart-description">玩家在体验曲红绡分线中的情绪波动可视化，展示关键情绪锚点与体验设计节点</p>
             </div>
             
             <div class="chart-container">
@@ -629,8 +629,8 @@
         <!-- 新增的心流体验分析图表 -->
         <section class="chart-section">
             <div class="section-header">
-                <h2 class="section-title">心流体验分析</h2>
-                <p class="chart-description">玩家在不同任务阶段的多维度体验分析，展示视觉冲击、情感共鸣、决策压力与操作反馈的强度变化</p>
+                <h2 class="section-title">心流体验定量分析</h2>
+                <p class="chart-description">玩家在不同任务阶段的多维度体验设定，展示视觉冲击、情感共鸣、决策压力与操作反馈的强度变化</p>
             </div>
             
             <div class="chart-container">
@@ -673,7 +673,7 @@
                             <p>通过强烈的视觉元素建立第一印象，形成玩家记忆锚点：</p>
                             <ul>
                                 <li>红唇骨剑的视觉冲击</li>
-                                <li>性感形象与危险动作的反差</li>
+                                <li>性感形象与超强战力的视觉盛宴</li>
                                 <li>高潮期战损共修的情欲表现</li>
                                 <li>血色丝带与骨剑特效</li>
                             </ul>
@@ -732,7 +732,7 @@
         </section>
 
         <footer>
-            <p>曲红绡情感体验设计 | NPC分线设计方案 | © 2023 游戏体验设计中心</p>
+            <p>曲红绡分线体验设计 | NPC分线设计方案 | © 2025 郭慧杰（Sevy）</p>
         </footer>
     </div>
 
@@ -783,7 +783,7 @@
                     </div>
                     
                     <div class="design-intent" id="designIntent">
-                        作为策划，我们旨在通过强烈的视觉冲击和悬念设计，在玩家心中建立"危险但迷人"的第一印象。骨剑威胁与性感形象的矛盾组合，配合异常任务线索，为后续关系发展埋下伏笔。
+                        希望通过强烈的视觉冲击和悬念设计，在玩家心中建立"危险且迷人"的第一印象。娇柔跌倒与性感幕后黑手的矛盾组合，配合异常任务线索，为后续关系发展埋下伏笔。
                     </div>
                 </div>
                 
@@ -812,24 +812,24 @@
                 endEmotion: '紧张',
                 intensity: 30,
                 color: '#b76e79',
-                designTarget: '建立角色第一印象，通过危险与魅力的矛盾组合激发玩家探索欲望，为后续情感发展奠定基础。',
-                designIntent: '作为策划，我们旨在通过强烈的视觉冲击和悬念设计，在玩家心中建立"危险但迷人"的第一印象。骨剑威胁与性感形象的矛盾组合，配合异常任务线索，为后续关系发展埋下伏笔。',
+                designTarget: '建立角色第一印象，通过危险与性感的矛盾组合激发玩家探索欲望，为后续情感发展奠定基础。',
+                designIntent: '希望通过强烈的视觉冲击和悬念设计，在玩家心中建立"危险且迷人"的第一印象。娇柔跌倒与性感幕后黑手的矛盾组合，配合异常任务线索，为后续关系发展埋下伏笔。',
                 keyPoints: [
-                    {
-                        title: '视觉冲击设计',
-                        content: '红色主题视觉设计，骨剑道具突出危险特质，性感形象与危险动作形成反差魅力'
-                    },
                     {
                         title: '悬念钩子',
                         content: '任务异常引发玩家推理欲望，神秘消失留下线索道具，为二次接触创造契机'
+                    },
+                    {
+                        title: '视觉冲击设计',
+                        content: '红色主题视觉设计，骨剑道具突出危险特质，性感形象与危险动作形成反差魅力'
                     },
                     {
                         title: '肢体语言设计',
                         content: '近距离接触时的微妙肢体语言，传达角色复杂性格与潜在情感可能性'
                     },
                     {
-                        title: '多分支互动',
-                        content: '玩家选择影响初次互动结果，为后续关系发展提供不同起点'
+                        title: '突然结束的相遇',
+                        content: '追逐战到投怀送抱再到突然离开，钓足玩家胃口，增强角色吸引力'
                     }
                 ]
             },
@@ -840,10 +840,10 @@
                 startEmotion: '怀疑',
                 endEmoji: '😏',
                 endEmotion: '兴奋',
-                intensity: 50,
+                intensity: 53,
                 color: '#e6b0aa',
                 designTarget: '通过剧情反转建立合作关系，利用信息差创造博弈空间，深化角色神秘感。',
-                designIntent: '策划意图在于创造戏剧性转折，将敌对关系转化为合作可能。通过信息不对称设计，让玩家在危险与利益之间权衡，增强角色神秘感和玩家探索欲望。',
+                designIntent: '意在于创造戏剧性转折，将敌对关系转化为合作可能。通过信息不对称设计，让玩家在危险与利益之间权衡，增强角色神秘感和玩家探索欲望。',
                 keyPoints: [
                     {
                         title: '剧情反转设计',
@@ -873,7 +873,7 @@
                 intensity: 70,
                 color: '#d98880',
                 designTarget: '通过协同挑战建立情感连接，利用牺牲情节深化角色羁绊，激发玩家保护欲。',
-                designIntent: '策划目标是通过共同经历创造情感纽带。牺牲情节的设计旨在引发玩家情感共鸣，让玩家从利益合作转向情感投入，为后续关系质变奠定基础。',
+                designIntent: '通过共同经历创造情感纽带。牺牲情节的设计旨在引发玩家情感共鸣，让玩家从利益合作转向情感投入，为后续关系质变奠定基础。',
                 keyPoints: [
                     {
                         title: '协同玩法设计',
@@ -900,10 +900,10 @@
                 startEmotion: '抉择',
                 endEmoji: '🔥',
                 endEmotion: '激情',
-                intensity: 95,
+                intensity: 99,
                 color: '#f5b7b1',
                 designTarget: '创造情感爆发点，通过关键抉择推动关系质变，实现情感与玩法的高潮融合。',
-                designIntent: '策划意图是创造情感与玩法融合的巅峰体验。通过战损状态突破角色心理防线，让玩家在关键抉择中决定关系走向，将情感突破与游戏机制完美结合。',
+                designIntent: '创造情感与玩法融合的巅峰体验。通过战损状态突破角色心理防线，让玩家在关键抉择中决定关系走向，将情感突破与游戏机制完美结合。',
                 keyPoints: [
                     {
                         title: '战损状态设计',
@@ -933,7 +933,7 @@
                 intensity: 80,
                 color: '#d7bde2',
                 designTarget: '通过日常互动巩固情感连接，创造稳定陪伴感，增强玩家长期投入意愿。',
-                designIntent: '作为策划，我们旨在通过日常互动维持情感热度。动态反馈系统让玩家感受到真实的关系进展，特殊事件设计深化情感连接，为最终结局创造情感基础。',
+                designIntent: '通过日常互动维持情感热度。动态反馈系统让玩家感受到真实的关系进展，特殊事件设计深化情感连接，为最终结局创造情感基础。',
                 keyPoints: [
                     {
                         title: '日常互动系统',
@@ -963,7 +963,7 @@
                 intensity: 85,
                 color: '#e8daef',
                 designTarget: '提供情感闭环，通过多结局设计满足不同玩家情感需求，创造完整体验。',
-                designIntent: '策划目标是为情感旅程提供圆满闭环。多结局设计尊重玩家选择，强调决策影响力，部分结局融入修仙悲剧元素，强化世界观一致性，让玩家获得深度情感满足。',
+                designIntent: '为情感旅程提供圆满闭环。多结局设计尊重玩家选择，强调决策影响力，部分结局融入修仙悲剧元素，强化世界观一致性，让玩家获得深度情感满足。',
                 keyPoints: [
                     {
                         title: '多结局分支',
@@ -1141,7 +1141,7 @@
                             label: '决策压力',
                             data: flowData.decisionPressure,
                             borderColor: 'var(--decision)',
-                            backgroundColor: 'rgba(217, 136, 128, 0.1)',
+                            backgroundColor: 'rgba(93, 138, 168, 0.1)',
                             borderWidth: 3,
                             tension: 0.3,
                             pointRadius: 6,
@@ -1154,7 +1154,7 @@
                             label: '操作反馈',
                             data: flowData.feedbackIntensity,
                             borderColor: 'var(--feedback)',
-                            backgroundColor: 'rgba(215, 189, 226, 0.1)',
+                            backgroundColor: 'rgba(152, 191, 100, 0.1)',
                             borderWidth: 3,
                             tension: 0.3,
                             pointRadius: 6,
@@ -1169,9 +1169,6 @@
                     responsive: true,
                     maintainAspectRatio: false,
                     plugins: {
-                        legend: {
-                            display: false
-                        },
                         tooltip: {
                             backgroundColor: 'rgba(255, 255, 255, 0.95)',
                             titleColor: '#5d4037',
