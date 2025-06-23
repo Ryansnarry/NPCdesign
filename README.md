@@ -4,1057 +4,1305 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>曲红绡攻略心流体验图表</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
-    
-    <!-- Tailwind配置 -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#FFD1DC',
-                        secondary: '#FF69B4',
-                        neutral: '#F5F5F5',
-                        dark: '#333333',
-                        tragic: '#FF6347',
-                        neutralEnding: '#D3D3D3',
-                        warm: '#FFD700',
-                        love: '#98FB98',
-                        playerExp: '#F0E68C',
-                        emotion: '#E6E6FA',
-                        need: '#AFEEEE',
-                        relation: '#FFC0CB'
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'system-ui', 'sans-serif'],
-                    },
-                }
+    <title>曲红绡情感体验设计 - 专业策划方案</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary: #b76e79;
+            --secondary: #e6b0aa;
+            --tragic: #d98880;
+            --love: #f5b7b1;
+            --need: #d7bde2;
+            --relation: #e8daef;
+            --dark: #5d4037;
+            --light: #f9f2f4;
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --visual: #b76e79;
+            --emotion: #e6b0aa;
+            --decision: #d98880;
+            --feedback: #d7bde2;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: linear-gradient(135deg, #fff5f7 0%, #f9f2f4 100%);
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* 头部区域 */
+        .header-section {
+            text-align: center;
+            padding: 40px 20px;
+            margin-bottom: 40px;
+            background: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .header-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--tragic), var(--love), var(--need), var(--relation));
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--dark);
+            position: relative;
+            z-index: 2;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: #7d5d5d;
+            margin: 0 auto 25px;
+            font-weight: 400;
+            max-width: 800px;
+        }
+
+        .designer-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .designer-card {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 15px 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+        }
+
+        .designer-card i {
+            color: var(--primary);
+        }
+
+        /* 图表区域 */
+        .chart-section {
+            background: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            padding: 40px;
+            margin-bottom: 50px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--dark);
+            position: relative;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .chart-description {
+            color: #7d5d5d;
+            max-width: 700px;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin: 0 auto;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 400px;
+            margin: 40px 0;
+        }
+
+        #emotionCoaster, #heartFlowChart {
+            width: 100%;
+            height: 100%;
+        }
+
+        .legend-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 30px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 15px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .legend-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        /* 模态框 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            border-radius: 20px;
+            width: 90%;
+            max-width: 700px;
+            padding: 40px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: slideUp 0.5s ease;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.8rem;
+            color: var(--primary);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .close-modal:hover {
+            transform: rotate(90deg);
+            color: var(--tragic);
+        }
+
+        .modal-header {
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(183, 110, 121, 0.1);
+        }
+
+        .modal-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+
+        .modal-subtitle {
+            font-size: 1.2rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .modal-body {
+            padding: 20px 0;
+        }
+
+        .section-card {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .section-title-card {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title-card i {
+            margin-right: 10px;
+            color: var(--primary);
+        }
+
+        .emotion-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .emotion-card {
+            text-align: center;
+            padding: 15px;
+            border-radius: 10px;
+            flex: 1;
+            max-width: 45%;
+            background: rgba(183, 110, 121, 0.05);
+        }
+
+        .emotion-emoji {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .emotion-text {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .emotion-arrow {
+            font-size: 2rem;
+            color: var(--primary);
+            padding: 0 10px;
+        }
+
+        .intensity-section {
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(183, 110, 121, 0.05);
+            border-radius: 12px;
+        }
+
+        .intensity-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .intensity-label {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .intensity-value {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        .intensity-bar {
+            height: 10px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .intensity-fill {
+            height: 100%;
+            border-radius: 5px;
+        }
+
+        .design-target {
+            margin: 25px 0;
+            line-height: 1.7;
+            font-size: 1.1rem;
+        }
+
+        .design-intent {
+            background: rgba(183, 110, 121, 0.08);
+            border-left: 4px solid var(--primary);
+            padding: 15px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+            font-style: italic;
+            position: relative;
+        }
+
+        .design-intent::before {
+            content: "设计意图";
+            position: absolute;
+            top: -12px;
+            left: 15px;
+            background: var(--primary);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-style: normal;
+        }
+
+        .key-points {
+            margin-top: 20px;
+        }
+
+        .key-point {
+            display: flex;
+            margin-bottom: 15px;
+            align-items: flex-start;
+        }
+
+        .point-icon {
+            width: 28px;
+            height: 28px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+            font-size: 14px;
+        }
+
+        .point-content {
+            flex: 1;
+        }
+
+        /* 新增的心流分析部分 */
+        .flow-analysis {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px dashed rgba(183, 110, 121, 0.3);
+        }
+        
+        .flow-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+        
+        .flow-card {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .flow-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .flow-card-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .flow-card-title i {
+            margin-right: 10px;
+            width: 30px;
+            height: 30px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .flow-card-content {
+            font-size: 1rem;
+            color: #5d4037;
+            line-height: 1.6;
+        }
+        
+        .flow-card-content ul {
+            padding-left: 20px;
+            margin-top: 10px;
+        }
+        
+        .flow-card-content li {
+            margin-bottom: 8px;
+            position: relative;
+        }
+        
+        .flow-card-content li::before {
+            content: "•";
+            color: var(--primary);
+            font-weight: bold;
+            position: absolute;
+            left: -15px;
+        }
+        
+        .flow-analysis-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .flow-analysis-title i {
+            margin-right: 10px;
+            color: var(--primary);
+        }
+
+        /* 页脚 */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: #7d5d5d;
+            font-size: 1.05rem;
+            margin-top: 50px;
+            border-top: 1px solid rgba(183, 110, 121, 0.1);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
             }
         }
-    </script>
-    
-    <style type="text/tailwindcss">
-        @layer utilities {
-            .content-auto {
-                content-visibility: auto;
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
             }
-            .bg-gradient-pink {
-                background: linear-gradient(135deg, #FFD1DC 0%, #FF69B4 100%);
+            
+            .chart-container {
+                height: 300px;
             }
-            .text-shadow {
-                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            }
-            .card-hover {
-                transition: all 0.3s ease;
-            }
-            .card-hover:hover {
-                transform: translateY(-5px);
-                box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            }
-            .tab-active {
-                @apply border-b-2 border-secondary text-secondary font-medium;
-            }
-            .modal-overlay {
-                background-color: rgba(0, 0, 0, 0.7);
-                z-index: 100;
-                transition: opacity 0.3s ease;
-            }
+            
             .modal-content {
-                max-width: 800px;
-                transform: scale(0.9);
-                transition: transform 0.3s ease;
+                padding: 30px 20px;
             }
-            .modal-overlay.active .modal-content {
-                transform: scale(1);
+            
+            .emotion-section {
+                flex-direction: column;
             }
-            .mermaid-container {
-                overflow-x: auto;
+            
+            .emotion-card {
+                max-width: 100%;
+                width: 100%;
+                margin-bottom: 15px;
+            }
+            
+            .emotion-arrow {
+                transform: rotate(90deg);
+                margin: 10px 0;
+            }
+            
+            .flow-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
-<body class="bg-gray-50 font-sans text-dark">
-    <!-- 导航栏 -->
-    <header class="sticky top-0 z-50 bg-white shadow-md">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center space-x-2">
-                <i class="fa fa-gamepad text-secondary text-2xl"></i>
-                <h1 class="text-xl font-bold text-dark">曲红绡攻略心流体验图表</h1>
-            </div>
-            <nav>
-                <ul class="flex space-x-6">
-                    <li><a href="#overview" class="hover:text-secondary transition-colors duration-200">概览</a></li>
-                    <li><a href="#flowchart" class="hover:text-secondary transition-colors duration-200">流程图表</a></li>
-                    <li><a href="#dimensions" class="hover:text-secondary transition-colors duration-200">关键维度</a></li>
-                    <li><a href="#design-highlights" class="hover:text-secondary transition-colors duration-200">设计亮点</a></li>
-                    <li><a href="#ai-expectations" class="hover:text-secondary transition-colors duration-200">AI预期</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <!-- 英雄区域 -->
-    <section class="bg-gradient-pink py-16 text-white">
-        <div class="container mx-auto px-4">
-            <div class="max-w-4xl mx-auto text-center">
-                <h2 class="text-[clamp(2rem,5vw,3.5rem)] font-bold mb-4 text-shadow">曲红绡攻略分线心流体验设计</h2>
-                <p class="text-lg md:text-xl opacity-90 mb-8">通过游戏化交互将[撩拨爽感+互相救赎]转化为可玩性内容</p>
-                <div class="flex flex-wrap justify-center gap-4">
-                    <a href="#flowchart" class="bg-white text-secondary px-6 py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-                        查看流程图
-                    </a>
-                    <a href="#dimensions" class="bg-transparent border-2 border-white text-white px-6 py-3 rounded-full font-medium hover:bg-white/10 transition-all duration-300">
-                        了解关键维度
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 概览区域 -->
-    <section id="overview" class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <h3 class="text-3xl font-bold text-center mb-12">体验流程概览</h3>
+<body>
+    <div class="container">
+        <!-- 头部区域 -->
+        <section class="header-section">
+            <h1>曲红绡情感体验设计</h1>
+            <p class="subtitle">基于NPC分线设计的情绪体验规划 - 从初见到结局的情感旅程设计</p>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- 阶段卡片 -->
-                <div class="bg-neutral rounded-xl p-6 shadow-lg card-hover" data-modal="modal1">
-                    <div class="w-14 h-14 bg-primary rounded-full flex items-center justify-center mb-4">
-                        <i class="fa fa-eye text-secondary text-2xl"></i>
-                    </div>
-                    <h4 class="text-xl font-bold mb-2">初见阶段</h4>
-                    <p class="text-gray-600">危险魅力，通过视觉刺激激活玩家的探索欲，建立初始印象。</p>
+            <div class="designer-info">
+                <div class="designer-card">
+                    <i class="fas fa-user"></i>
+                    <span>策划：情感体验设计组</span>
                 </div>
-                
-                <div class="bg-neutral rounded-xl p-6 shadow-lg card-hover" data-modal="modal2">
-                    <div class="w-14 h-14 bg-primary rounded-full flex items-center justify-center mb-4">
-                        <i class="fa fa-search text-secondary text-2xl"></i>
-                    </div>
-                    <h4 class="text-xl font-bold mb-2">再见阶段</h4>
-                    <p class="text-gray-600">线索试探，通过剧情反转和信息差满足，引导玩家深入世界观。</p>
+                <div class="designer-card">
+                    <i class="fas fa-calendar"></i>
+                    <span>版本：1.2.0</span>
                 </div>
-                
-                <div class="bg-neutral rounded-xl p-6 shadow-lg card-hover" data-modal="modal3">
-                    <div class="w-14 h-14 bg-primary rounded-full flex items-center justify-center mb-4">
-                        <i class="fa fa-line-chart text-secondary text-2xl"></i>
-                    </div>
-                    <h4 class="text-xl font-bold mb-2">成长阶段</h4>
-                    <p class="text-gray-600">羁绊深化，通过合作战斗和保护欲激发，建立角色间的情感纽带。</p>
-                </div>
-                
-                <div class="bg-neutral rounded-xl p-6 shadow-lg card-hover" data-modal="modal4">
-                    <div class="w-14 h-14 bg-primary rounded-full flex items-center justify-center mb-4">
-                        <i class="fa fa-heart text-secondary text-2xl"></i>
-                    </div>
-                    <h4 class="text-xl font-bold mb-2">高潮阶段</h4>
-                    <p class="text-gray-600">情感突破，通过关键抉择和亲密关系确认，达到情感宣泄的高峰。</p>
-                </div>
-                
-                <div class="bg-neutral rounded-xl p-6 shadow-lg card-hover" data-modal="modal5">
-                    <div class="w-14 h-14 bg-primary rounded-full flex items-center justify-center mb-4">
-                        <i class="fa fa-refresh text-secondary text-2xl"></i>
-                    </div>
-                    <h4 class="text-xl font-bold mb-2">循环体验</h4>
-                    <p class="text-gray-600">日常培养，通过日常互动和养成机制，建立玩家的归属感和长期参与。</p>
-                </div>
-                
-                <div class="bg-neutral rounded-xl p-6 shadow-lg card-hover" data-modal="modal6">
-                    <div class="w-14 h-14 bg-primary rounded-full flex items-center justify-center mb-4">
-                        <i class="fa fa-book text-secondary text-2xl"></i>
-                    </div>
-                    <h4 class="text-xl font-bold mb-2">结局阶段</h4>
-                    <p class="text-gray-600">宿命终章，通过多种结局和宿命共鸣，完成玩家的情感闭环。</p>
+                <div class="designer-card">
+                    <i class="fas fa-tags"></i>
+                    <span>标签：NPC设计、情感曲线、玩家体验</span>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- 流程图区域 -->
-    <section id="flowchart" class="py-16 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <h3 class="text-3xl font-bold text-center mb-8">完整流程图表</h3>
-            <p class="text-center text-gray-600 mb-12 max-w-3xl mx-auto">
-                曲红绡攻略分线的全流程设计，展示了从初见阶段到结局阶段的完整体验路径，
-                包含了玩家体验、情绪曲线、需求满足和感情弧线的变化。
-            </p>
+        <!-- 图表区域 -->
+        <section class="chart-section">
+            <div class="section-header">
+                <h2 class="section-title">情感体验曲线</h2>
+                <p class="chart-description">玩家在攻略曲红绡过程中的情绪波动可视化，展示关键情绪锚点与体验设计节点</p>
+            </div>
             
-            <div class="bg-white rounded-xl shadow-xl p-6 md:p-10 overflow-x-auto mermaid-container">
-                <div class="mermaid" id="fullFlowchart">
-                    %%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#FFD1DC', 'edgeLabelBackground':'#FFF0F5'}}}%%
-                    flowchart TD
-                        A[初见阶段] --> B[再见阶段]
-                        B --> C[成长阶段]
-                        C --> D[高潮阶段]
-                        D --> E[循环体验]
-                        E --> F[结局阶段]
-
-                        subgraph A[初见阶段：危险魅力]
-                            A1["亲门任务异常"] -->|“相同任务重复”| A2["追逐玩法"]
-                            A2 -->|地铁跑酷式互动| A3["肢体接触选择"]
-                            A3 -->|“闪避/搀扶”| A4["留下线索离场"]
-                            
-                            style A1 fill:#FFB6C1,stroke:#C71585
-                            style A4 fill:#FF69B4,stroke:#C71585
-                        end
-
-                        subgraph B[再见阶段：线索试探]
-                            B1["尸体调查"] -->|“血色丝绢线索”| B2["骨剑威胁"]
-                            B2 -->|特写镜头| B3["合作选择"]
-                            B3 -->|“拔剑/反问”| B4["噬灵体秘闻"]
-                            
-                            style B2 fill:#FFA07A,stroke:#FF4500
-                        end
-
-                        subgraph C[成长阶段：羁绊深化]
-                            C1["藏经阁潜入"] -->|三消机关破解| C2["断后牺牲"]
-                            C2 -->|“呆子快跑！”| C3["通缉追杀"]
-                            C3 -->|协同作战| C4["秘密揭露"]
-                            
-                            style C2 fill:#87CEFA,stroke:#1E90FF
-                        end
-
-                        subgraph D[高潮阶段：情感突破]
-                            D1["战损互动"] -->|“安抚/喂药”| D2["骨剑反噬告白"]
-                            D2 -->|心跳特写| D3["关键抉择"]
-                            D3 -->|“推开/亲吻”| D4["血契共修"]
-                            
-                            style D3 fill:#DA70D6,stroke:#8A2BE2
-                        end
-
-                        subgraph E[循环体验：日常培养]
-                            E1["密令任务"] -->|刺杀/窃取| E2["情感问候"]
-                            E2 -->|“陪看月亮”| E3["生日惊喜"]
-                            E3 -->|送礼互动| E4["心魔共修"]
-                            
-                            style E4 fill:#BA55D3,stroke:#4B0082
-                        end
-
-                        subgraph F[结局阶段：宿命终章]
-                            F1["决裂结局"]:::tragic
-                            F2["觉醒结局"]:::neutral
-                            F3["智别结局"]:::warm
-                            F4["救赎结局"]:::love
-                            
-                            classDef tragic fill:#FF6347,stroke:#B22222
-                            classDef neutral fill:#D3D3D3,stroke:#808080
-                            classDef warm fill:#FFD700,stroke:#FF8C00
-                            classDef love fill:#98FB98,stroke:#2E8B57
-                        end
-
-                        %% 玩家体验维度
-                        expA[“好奇探索欲<br>视觉冲击”]:::exp -.-> A
-                        expB[“剧情反转感<br>信息差满足”]:::exp -.-> B
-                        expC[“合作成就感<br>保护欲激发”]:::exp -.-> C
-                        expD[“情感宣泄<br>决策参与感”]:::exp -.-> D
-                        expE[“养成满足感<br>日常陪伴”]:::exp -.-> E
-                        expF[“宿命沉浸感<br>结局共鸣”]:::exp -.-> F
-                        classDef exp fill:#F0E68C,stroke:#DAA520
-
-                        %% 情绪曲线
-                        emoA["初见-好奇紧张"]:::emo --> emoB["再见-刺激兴奋"]
-                        emoB --> emoC["成长-刺激+感动"]
-                        emoC --> emoD["高潮-冲动激情"]
-                        emoD --> emoE["日常循环-温馨期待"]
-                        emoE --> emoF["结局-释然满足"]
-                        classDef emo fill:#E6E6FA,stroke:#9370DB
-
-                        %% 需求满足
-                        needA["探索欲+新鲜感"] --> needB["求知欲+掌控感"]
-                        needB --> needC["成长收益+羁绊感"]
-                        needC --> needD["情感宣泄+决策权"]
-                        needD --> needE["日常陪伴+养成"]
-                        needE --> needF["自我实现+宿命共鸣"]
-                        style needA fill:#AFEEEE,stroke:#20B2AA
-
-                        %% 感情弧线
-                        relationA["神秘吸引"] --> relationB["利益合作"]
-                        relationB --> relationC["患难与共"]
-                        relationC --> relationD["亲密突破"]
-                        relationD --> relationE["稳定陪伴"]
-                        relationE --> relationF["命运共生"]
-                        style relationA fill:#FFC0CB,stroke:#DB7093
+            <div class="chart-container">
+                <canvas id="emotionCoaster"></canvas>
+            </div>
+            
+            <div class="legend-container">
+                <div class="legend-item" data-phase="0">
+                    <div class="legend-color" style="background-color: #b76e79;"></div>
+                    <span>初见阶段</span>
+                </div>
+                <div class="legend-item" data-phase="1">
+                    <div class="legend-color" style="background-color: #e6b0aa;"></div>
+                    <span>再见阶段</span>
+                </div>
+                <div class="legend-item" data-phase="2">
+                    <div class="legend-color" style="background-color: #d98880;"></div>
+                    <span>成长阶段</span>
+                </div>
+                <div class="legend-item" data-phase="3">
+                    <div class="legend-color" style="background-color: #f5b7b1;"></div>
+                    <span>高潮阶段</span>
+                </div>
+                <div class="legend-item" data-phase="4">
+                    <div class="legend-color" style="background-color: #d7bde2;"></div>
+                    <span>循环阶段</span>
+                </div>
+                <div class="legend-item" data-phase="5">
+                    <div class="legend-color" style="background-color: #e8daef;"></div>
+                    <span>结局阶段</span>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- 关键维度区域 -->
-    <section id="dimensions" class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <h3 class="text-3xl font-bold text-center mb-8">关键维度说明</h3>
-            <!-- 情感发展关键维度 -->
-    <section class="py-16 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <h3 class="text-3xl font-bold text-center mb-12">情感发展关键维度</h3>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- 玩家视角维度 -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform transition duration-300 hover:-translate-y-2">
-                    <div class="h-48 bg-gradient-to-r from-blue-500 to-cyan-400 flex items-center justify-center">
-                        <i class="fas fa-user-circle text-white text-6xl"></i>
-                    </div>
-                    <div class="p-6">
-                        <h4 class="text-xl font-bold mb-4 text-blue-700">玩家视角演进</h4>
-                        <div class="space-y-4">
-                            <div class="flex items-start">
-                                <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3 flex-shrink-0 mt-1">
-                                    <i class="fas fa-shield-alt text-blue-500"></i>
-                                </div>
-                                <div>
-                                    <h5 class="font-semibold">警惕</h5>
-                                    <p class="text-gray-600 text-sm">对神秘邪修保持戒备，评估潜在风险</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3 flex-shrink-0 mt-1">
-                                    <i class="fas fa-handshake text-blue-500"></i>
-                                </div>
-                                <div>
-                                    <h5 class="font-semibold">利用</h5>
-                                    <p class="text-gray-600 text-sm">基于利益建立合作关系，获取资源和帮助</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3 flex-shrink-0 mt-1">
-                                    <i class="fas fa-user-check text-blue-500"></i>
-                                </div>
-                                <div>
-                                    <h5 class="font-semibold">信任</h5>
-                                    <p class="text-gray-600 text-sm">共同经历危险后建立信任，情感开始转变</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3 flex-shrink-0 mt-1">
-                                    <i class="fas fa-heart-pulse text-blue-500"></i>
-                                </div>
-                                <div>
-                                    <h5 class="font-semibold">沉迷</h5>
-                                    <p class="text-gray-600 text-sm">被危险魅力吸引，陷入情感漩涡无法自拔</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3 flex-shrink-0 mt-1">
-                                    <i class="fas fa-hands-holding-circle text-blue-500"></i>
-                                </div>
-                                <div>
-                                    <h5 class="font-semibold">依恋</h5>
-                                    <p class="text-gray-600 text-sm">情感深度连接，产生保护欲和责任感</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3 flex-shrink-0 mt-1">
-                                    <i class="fas fa-link text-blue-500"></i>
-                                </div>
-                                <div>
-                                    <h5 class="font-semibold">共生</h5>
-                                    <p class="text-gray-600 text-sm">命运紧密相连，共同面对挑战与未来</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- NPC视角维度 -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform transition duration-300 hover:-translate-y-2">
-                    <div class="h-48 bg-gradient-to-r from-red-500 to-pink-400 flex items-center justify-center">
-                        <i class="fas fa-ghost text-white text-6xl"></i>
-                    </div>
-                    <div class="p-6">
-                        <h4 class="text-xl font-bold mb-4 text-red-700">NPC视角演进</h4>
-                        <div class="space-y-4">
-                            <div class="flex items-start">
-                                <div class="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center mr-3 flex-shrink-0 mt-1">
-                                    <i class="fas fa-sitemap text-red-500"></i>
-                                </div>
-                                <div>
-                                    <h5 class="font-semibold">算计</h5>
-                                    <p class="text-gray-600 text-sm">将玩家视为达成目标的工具，精心布局</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center mr-3 flex-shrink-0 mt-1">
-                                    <i class="fas fa-question-circle text-red-500"></i>
-                                </div>
-                                <div>
-                                    <h5 class="font-semibold">试探</h5>
-                                    <p class="text-gray-600 text-sm">测试玩家能力与忠诚，评估利用价值</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center mr-3 flex-shrink-0 mt-1">
-                                    <i class="fas fa-balance-scale text-red-500"></i>
-                                </div>
-                                <div>
-                                    <h5 class="font-semibold">动摇</h5>
-                                    <p class="text-gray-600 text-sm">防御心开始松动，情感与理智产生冲突</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center mr-3 flex-shrink-0 mt-1">
-                                    <i class="fas fa-fire-alt text-red-500"></i>
-                                </div>
-                                <div>
-                                    <h5 class="font-semibold">沉溺</h5>
-                                    <p class="text-gray-600 text-sm">明知危险却陷入情感，享受痛苦与欢愉</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center mr-3 flex-shrink-0 mt-1">
-                                    <i class="fas fa-hand-holding-heart text-red-500"></i>
-                                </div>
-                                <div>
-                                    <h5 class="font-semibold">依赖</h5>
-                                    <p class="text-gray-600 text-sm">情感寄托产生，对玩家产生深层依赖</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center mr-3 flex-shrink-0 mt-1">
-                                    <i class="fas fa-dove text-red-500"></i>
-                                </div>
-                                <div>
-                                    <h5 class="font-semibold">救赎</h5>
-                                    <p class="text-gray-600 text-sm">通过玩家获得情感救赎，找到新生希望</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- 关系发展维度 -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform transition duration-300 hover:-translate-y-2">
-                    <div class="h-48 bg-gradient-to-r from-purple-500 to-indigo-400 flex items-center justify-center">
-                        <i class="fas fa-heart text-white text-6xl"></i>
-                    </div>
-                    <div class="p-6">
-                        <h4 class="text-xl font-bold mb-4 text-purple-700">关系发展阶段</h4>
-                        <div class="space-y-4">
-                            <div class="flex items-start">
-                                <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center mr-3 flex-shrink-0 mt-1">
-                                    <i class="fas fa-eye text-purple-500"></i>
-                                </div>
-                                <div>
-                                    <h5 class="font-semibold">神秘吸引</h5>
-                                    <p class="text-gray-600 text-sm">初见时的好奇与戒备，危险魅力的初步展现</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center mr-3 flex-shrink-0 mt-1">
-                                    <i class="fas fa-handshake text-purple-500"></i>
-                                </div>
-                                <div>
-                                    <h5 class="font-semibold">利益合作</h5>
-                                    <p class="text-gray-600 text-sm">基于共同目标建立的不稳定合作关系</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center mr-3 flex-shrink-0 mt-1">
-                                    <i class="fas fa-shield-alt text-purple-500"></i>
-                                </div>
-                                <div>
-                                    <h5 class="font-semibold">生死与共</h5>
-                                    <p class="text-gray-600 text-sm">共同经历危险，建立超越利益的信任关系</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center mr-3 flex-shrink-0 mt-1">
-                                    <i class="fas fa-heart-pulse text-purple-500"></i>
-                                </div>
-                                <div>
-                                    <h5 class="font-semibold">情感爆发</h5>
-                                    <p class="text-gray-600 text-sm">压抑情感的突破，关系进入新的阶段</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center mr-3 flex-shrink-0 mt-1">
-                                    <i class="fas fa-home text-purple-500"></i>
-                                </div>
-                                <div>
-                                    <h5 class="font-semibold">日常羁绊</h5>
-                                    <p class="text-gray-600 text-sm">通过日常互动加深了解，情感稳定发展</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center mr-3 flex-shrink-0 mt-1">
-                                    <i class="fas fa-link text-purple-500"></i>
-                                </div>
-                                <div>
-                                    <h5 class="font-semibold">命运共生</h5>
-                                    <p class="text-gray-600 text-sm">双方命运紧密相连，共同面对未来挑战</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        </section>
+        
+        <!-- 新增的心流体验分析图表 -->
+        <section class="chart-section">
+            <div class="section-header">
+                <h2 class="section-title">心流体验分析</h2>
+                <p class="chart-description">玩家在不同任务阶段的多维度体验分析，展示视觉冲击、情感共鸣、决策压力与操作反馈的强度变化</p>
             </div>
-        </div>
-    </section>
-    
-    <!-- 心流体验综合折线图 -->
-    <section class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <h3 class="text-3xl font-bold text-center mb-12">情感心流体验曲线</h3>
             
-            <div class="bg-neutral rounded-xl p-6 shadow-lg">
-                <div class="mermaid" style="height: 500px;">
-                    xychart-beta
-                            title 情感心流体验综合曲线
-                            x-axis 阶段 [警惕, 利用, 信任, 沉迷, 依恋, 共生]
-                            y-axis 强度 0 --> 100
-                            
-                            line [
-                                {name: 玩家情感强度, color: #1890FF, values: [30, 45, 60, 85, 90, 95]},
-                                {name: NPC情感强度, color: #F5222D, values: [25, 35, 55, 80, 85, 90]},
-                                {name: 游戏体验满意度, color: #52C41A, values: [40, 50, 65, 75, 85, 95]},
-                                {name: 剧情投入度, color: #FA8C16, values: [50, 60, 70, 85, 80, 90]}
-                            ]
-                </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-8 text-center">
-                    <div class="flex items-center justify-center">
-                        <div class="w-4 h-4 rounded-full bg-blue-500 mr-2"></div>
-                        <span>玩家情感强度</span>
-                    </div>
-                    <div class="flex items-center justify-center">
-                        <div class="w-4 h-4 rounded-full bg-red-500 mr-2"></div>
-                        <span>NPC情感强度</span>
-                    </div>
-                    <div class="flex items-center justify-center">
-                        <div class="w-4 h-4 rounded-full bg-green-500 mr-2"></div>
-                        <span>游戏体验满意度</span>
-                    </div>
-                    <div class="flex items-center justify-center">
-                        <div class="w-4 h-4 rounded-full bg-purple-500 mr-2"></div>
-                        <span>关键情绪锚点</span>
-                    </div>
-                </div>
+            <div class="chart-container">
+                <canvas id="heartFlowChart"></canvas>
             </div>
-        </div>
-    </section>
-
-    <!-- 设计亮点区域 -->
-    <section id="design-highlights" class="py-16 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <h3 class="text-3xl font-bold text-center mb-8">设计亮点</h3>
             
-            <!-- 分线对话标定感情节奏 -->
-            <div class="bg-white rounded-xl shadow-xl p-6 md:p-10 mb-12">
-                <h4 class="text-2xl font-bold mb-8 flex items-center">
-                    <i class="fa fa-comments text-secondary mr-3"></i>
-                    分线对话标定感情节奏
-                </h4>
-                <div class="relative">
-                    <!-- 连接线 -->
-                    <div class="hidden md:block absolute top-1/2 left-0 w-full h-1 bg-gray-200 -translate-y-1/2 z-0"></div>
-                    <div class="grid grid-cols-1 md:grid-cols-6 gap-6 relative z-10">
-                        <!-- 状态A -->
-                        <div class="bg-neutral rounded-lg p-5 shadow-md card-hover text-center">
-                            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4 mx-auto">
-                                <i class="fa fa-question-circle text-blue-500 text-2xl"></i>
-                            </div>
-                            <h5 class="font-bold text-lg mb-2">警惕观察</h5>
-                            <p class="text-gray-600 italic mb-3">"你是谁？"
-                            <div class="text-sm text-gray-500">初始戒备阶段</div>
-                        </div>
-
-                        <!-- 状态B -->
-                        <div class="bg-neutral rounded-lg p-5 shadow-md card-hover text-center">
-                            <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mb-4 mx-auto">
-                                <i class="fa fa-handshake-o text-yellow-500 text-2xl"></i>
-                            </div>
-                            <h5 class="font-bold text-lg mb-2">互相利用</h5>
-                            <p class="text-gray-600 italic mb-3">"帮我做事"
-                            <div class="text-sm text-gray-500">利益合作阶段</div>
-                        </div>
-
-                        <!-- 状态C -->
-                        <div class="bg-neutral rounded-lg p-5 shadow-md card-hover text-center">
-                            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4 mx-auto">
-                                <i class="fa fa-shield text-green-500 text-2xl"></i>
-                            </div>
-                            <h5 class="font-bold text-lg mb-2">舍身保护</h5>
-                            <p class="text-gray-600 italic mb-3">"我断后！"
-                            <div class="text-sm text-gray-500">信任建立阶段</div>
-                        </div>
-
-                        <!-- 状态D (高潮) -->
-                        <div class="bg-neutral rounded-lg p-5 shadow-md card-hover text-center border-2 border-pink-500 transform md:scale-110">
-                            <div class="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center mb-4 mx-auto">
-                                <i class="fa fa-heart text-pink-500 text-2xl"></i>
-                            </div>
-                            <h5 class="font-bold text-lg mb-2 text-pink-600">情欲交融</h5>
-                            <p class="text-gray-600 italic mb-3">"吻我..."
-                            <div class="text-sm text-gray-500">关系突破阶段</div>
-                        </div>
-
-                        <!-- 状态E -->
-                        <div class="bg-neutral rounded-lg p-5 shadow-md card-hover text-center">
-                            <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-4 mx-auto">
-                                <i class="fa fa-moon-o text-purple-500 text-2xl"></i>
-                            </div>
-                            <h5 class="font-bold text-lg mb-2">日常温情</h5>
-                            <p class="text-gray-600 italic mb-3">"陪我看月亮"
-                            <div class="text-sm text-gray-500">稳定发展阶段</div>
-                        </div>
-
-                        <!-- 状态F -->
-                        <div class="bg-neutral rounded-lg p-5 shadow-md card-hover text-center">
-                            <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-4 mx-auto">
-                                <i class="fa fa-link text-red-500 text-2xl"></i>
-                            </div>
-                            <h5 class="font-bold text-lg mb-2">命运联结</h5>
-                            <p class="text-gray-600 italic mb-3">"共生共死"
-                            <div class="text-sm text-gray-500">情感圆满阶段</div>
-                        </div>
-                    </div>
+            <div class="legend-container">
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: var(--visual);"></div>
+                    <span>视觉冲击</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: var(--emotion);"></div>
+                    <span>情感共鸣</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: var(--decision);"></div>
+                    <span>决策压力</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background-color: var(--feedback);"></div>
+                    <span>操作反馈</span>
                 </div>
             </div>
             
-            <!-- 情绪锚点 -->
-            <div class="bg-white rounded-xl shadow-xl p-6 md:p-10 mb-12">
-                <h4 class="text-2xl font-bold mb-6 flex items-center">
-                    <i class="fa fa-anchor text-secondary mr-3"></i>
-                    情绪锚点
-                </h4>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div class="bg-neutral rounded-lg p-5 shadow-md card-hover">
-                        <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mb-4">
-                            <i class="fa fa-bolt text-red-500 text-xl"></i>
+            <!-- 心流体验分析 -->
+            <div class="flow-analysis">
+                <div class="flow-analysis-title">
+                    <i class="fas fa-brain"></i>
+                    <span>心流体验层次解析</span>
+                </div>
+                
+                <div class="flow-grid">
+                    <div class="flow-card">
+                        <div class="flow-card-title">
+                            <i class="fas fa-eye"></i>
+                            <span>视觉冲击设计</span>
                         </div>
-                        <h5 class="font-bold text-lg mb-2">骨剑抵喉</h5>
-                        <p class="text-gray-600">危险刺激的场景设计，通过近距离威胁和特写镜头，营造紧张氛围和性张力。</p>
+                        <div class="flow-card-content">
+                            <p>通过强烈的视觉元素建立第一印象，形成玩家记忆锚点：</p>
+                            <ul>
+                                <li>红唇骨剑的视觉冲击</li>
+                                <li>性感形象与危险动作的反差</li>
+                                <li>高潮期战损共修的情欲表现</li>
+                                <li>血色丝带与骨剑特效</li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="bg-neutral rounded-lg p-5 shadow-md card-hover">
-                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
-                            <i class="fa fa-shield text-blue-500 text-xl"></i>
+                    
+                    <div class="flow-card">
+                        <div class="flow-card-title">
+                            <i class="fas fa-heart"></i>
+                            <span>情感共鸣设计</span>
                         </div>
-                        <h5 class="font-bold text-lg mb-2">藏经阁断后</h5>
-                        <p class="text-gray-600">牺牲场景，角色为保护玩家而冒险断后，激发玩家的保护欲和感动情绪。</p>
+                        <div class="flow-card-content">
+                            <p>通过角色背景与玩家互动建立情感连接：</p>
+                            <ul>
+                                <li>罗刹族复仇公主的悲情背景</li>
+                                <li>为玩家牺牲的剧情设计</li>
+                                <li>功法反噬的宿命矛盾</li>
+                                <li>生日、纪念日等情感事件</li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="bg-neutral rounded-lg p-5 shadow-md card-hover">
-                        <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mb-4">
-                            <i class="fa fa-medkit text-purple-500 text-xl"></i>
+                    
+                    <div class="flow-card">
+                        <div class="flow-card-title">
+                            <i class="fas fa-balance-scale"></i>
+                            <span>决策压力设计</span>
                         </div>
-                        <h5 class="font-bold text-lg mb-2">战损喂药</h5>
-                        <p class="text-gray-600">亲密互动场景，玩家照顾受伤角色，通过近距离互动和心跳特写，增强情感张力。</p>
+                        <div class="flow-card-content">
+                            <p>关键抉择点增加玩家参与感：</p>
+                            <ul>
+                                <li>合作或对抗的初始选择</li>
+                                <li>战损状态下的情感抉择</li>
+                                <li>正邪立场的道德困境</li>
+                                <li>多结局分支的抉择权重</li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="bg-neutral rounded-lg p-5 shadow-md card-hover">
-                        <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-4">
-                            <i class="fa fa-link text-green-500 text-xl"></i>
+                    
+                    <div class="flow-card">
+                        <div class="flow-card-title">
+                            <i class="fas fa-gamepad"></i>
+                            <span>操作反馈设计</span>
                         </div>
-                        <h5 class="font-bold text-lg mb-2">血契共修</h5>
-                        <p class="text-gray-600">关系升华场景，通过仪式性的共修环节，象征角色关系的深化和情感的升华。</p>
+                        <div class="flow-card-content">
+                            <p>玩法机制强化情感体验：</p>
+                            <ul>
+                                <li>追逐战QTE操作设计</li>
+                                <li>双人配合的潜入玩法</li>
+                                <li>血契共修的音阶副本</li>
+                                <li>好感度影响互动反馈</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>曲红绡情感体验设计 | NPC分线设计方案 | © 2023 游戏体验设计中心</p>
+        </footer>
+    </div>
+
+    <!-- 模态框 -->
+    <div class="modal" id="phaseModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalTitle">初见阶段</h3>
+                <div class="modal-subtitle" id="modalSubtitle">危险魅力引探索</div>
             </div>
             
-            <!-- 多线程满足 -->
-            <div class="bg-white rounded-xl shadow-xl p-6 md:p-10 mb-12">
-                <h4 class="text-2xl font-bold mb-6 flex items-center">
-                    <i class="fa fa-threads text-secondary mr-3"></i>
-                    多线程满足
-                </h4>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                    <div>
-                        <p class="text-gray-600 mb-6">设计通过多种方式同时满足不同玩家的需求，实现全面的体验覆盖。</p>
-                        <div class="space-y-4">
-                            <div>
-                                <div class="flex justify-between mb-1">
-                                    <span class="font-medium">情感体验</span>
-                                    <span>45%</span>
-                                </div>
-                                <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                    <div class="bg-pink-500 h-2.5 rounded-full" style="width: 45%"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between mb-1">
-                                    <span class="font-medium">游戏性收益</span>
-                                    <span>35%</span>
-                                </div>
-                                <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                    <div class="bg-blue-500 h-2.5 rounded-full" style="width: 35%"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between mb-1">
-                                    <span class="font-medium">社交资本</span>
-                                    <span>20%</span>
-                                </div>
-                                <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                    <div class="bg-green-500 h-2.5 rounded-full" style="width: 20%"></div>
-                                </div>
-                            </div>
+            <div class="modal-body">
+                <div class="section-card">
+                    <div class="section-title-card">
+                        <i class="fas fa-heartbeat"></i> 核心情绪变化
+                    </div>
+                    <div class="emotion-section">
+                        <div class="emotion-card">
+                            <div class="emotion-emoji" id="startEmoji">😯</div>
+                            <div class="emotion-text" id="startEmotion">好奇</div>
+                        </div>
+                        <div class="emotion-arrow">→</div>
+                        <div class="emotion-card">
+                            <div class="emotion-emoji" id="endEmoji">😨</div>
+                            <div class="emotion-text" id="endEmotion">紧张</div>
                         </div>
                     </div>
-                    <div class="bg-neutral rounded-lg p-6 shadow-md">
-                        <div class="mermaid">
-                            pie
-                                title 玩家需求满足比例
-                                "情感体验" : 45
-                                "游戏性收益" : 35
-                                "社交资本" : 20
+                    
+                    <div class="intensity-section">
+                        <div class="intensity-header">
+                            <div class="intensity-label">情绪强度目标</div>
+                            <div class="intensity-value" id="intensityValue">30%</div>
+                        </div>
+                        <div class="intensity-bar">
+                            <div class="intensity-fill" id="intensityFill" style="width: 30%; background: #b76e79;"></div>
                         </div>
                     </div>
                 </div>
-            </section>
-
-    
-        <!-- AI预期区域 -->
-    <section id="ai-expectations" class="py-16 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <h3 class="text-3xl font-bold text-center mb-8">AI预期</h3>   
-            <!-- AI增强设计 -->
-            <div class="bg-white rounded-xl shadow-xl p-6 md:p-10 mb-12">
-                <h4 class="text-2xl font-bold mb-6 flex items-center">
-                    <i class="fa fa-robot text-secondary mr-3"></i>
-                    AI增强设计
-                </h4>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="bg-neutral rounded-lg p-5 shadow-md card-hover">
-                        <div class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mb-4">
-                            <i class="fa fa-comments text-yellow-500 text-xl"></i>
-                        </div>
-                        <h5 class="font-bold text-lg mb-2">动态互动</h5>
-                        <p class="text-gray-600">根据玩家与角色的好感度水平，解锁不同的私密语音和动作内容，增强互动的深度和个性化。</p>
+                
+                <div class="section-card">
+                    <div class="section-title-card">
+                        <i class="fas fa-bullseye"></i> 体验设计目标
                     </div>
-                    <div class="bg-neutral rounded-lg p-5 shadow-md card-hover">
-                        <div class="w-12 h-12 bg-teal-100 rounded-full flex items-center justify-center mb-4">
-                            <i class="fa fa-gamepad text-teal-500 text-xl"></i>
-                        </div>
-                        <h5 class="font-bold text-lg mb-2">智能副本</h5>
-                        <p class="text-gray-600">NPC具有自主战斗策略，能够根据玩家的战斗风格和当前情境做出不同反应，提升游戏的挑战性和真实感。</p>
+                    <div class="design-target" id="designTarget">
+                        建立角色第一印象，通过危险与魅力的矛盾组合激发玩家探索欲望，为后续情感发展奠定基础。
                     </div>
-                    <div class="bg-neutral rounded-lg p-5 shadow-md card-hover">
-                        <div class="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mb-4">
-                            <i class="fa fa-calendar text-indigo-500 text-xl"></i>
-                        </div>
-                        <h5 class="font-bold text-lg mb-2">情感算法</h5>
-                        <p class="text-gray-600">基于玩家的互动频率和选择，触发节日专属互动和特殊事件，增强游戏的沉浸感和长期吸引力。</p>
+                    
+                    <div class="design-intent" id="designIntent">
+                        作为策划，我们旨在通过强烈的视觉冲击和悬念设计，在玩家心中建立"危险但迷人"的第一印象。骨剑威胁与性感形象的矛盾组合，配合异常任务线索，为后续关系发展埋下伏笔。
                     </div>
                 </div>
-            </div>
-
-            <!-- AI加入游戏版本预期 -->
-            <div class="bg-white rounded-xl shadow-xl p-6 md:p-10">
-                <h4 class="text-2xl font-bold mb-6 flex items-center">
-                    <i class="fa fa-lightbulb-o text-secondary mr-3"></i>
-                    AI加入版本后初步预期（以白灵焱模型为基础）
-                </h4>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="bg-neutral rounded-lg p-5 shadow-md card-hover">
-                        <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mb-4">
-                            <i class="fa fa-video-camera text-red-500 text-xl"></i>
-                        </div>
-                        <h5 class="font-bold text-lg mb-2">任务交互动态表演高光时刻 (30S)</h5>
-                        <p class="text-gray-600 mb-4">在关键任务节点触发曲红绡的动态表演片段，展现角色魅力与剧情张力：</p>
-                        <ul class="text-gray-600 space-y-2 pl-5 list-disc">
-                            <li>互相试探时的拉扯逗弄与画面放大</li>
-                            <li>剧情转折时的眼神变化与微表情细节</li>
-                            <li>危险情境下的警觉姿态与武器挥舞特效</li>
-                            <li>提出合作时的肢体语言与语音语调变化</li>
-                            <li>关键选择后的反应动画与专属台词</li>
-                        </ul>
+                
+                <div class="section-card">
+                    <div class="section-title-card">
+                        <i class="fas fa-lightbulb"></i> 关键体验设计
                     </div>
-                    <div class="bg-neutral rounded-lg p-5 shadow-md card-hover">
-                        <div class="w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center mb-4">
-                            <i class="fa fa-heart text-pink-500 text-xl"></i>
-                        </div>
-                        <h5 class="font-bold text-lg mb-2">日常交往真人恋爱时刻</h5>
-                        <p class="text-gray-600 mb-4">类似《恋与深空》的互动体验，对玩家操作产生多样化反应：</p>
-                        <ul class="text-gray-600 space-y-2 pl-5 list-disc">
-                            <li><strong>触摸互动</strong>：不同身体部位触发不同反应（脸颊微红、牵手回应等）</li>
-                            <li><strong>对话选择</strong>：根据玩家语气和内容产生情绪波动与回应（甚至跳舞）</li>
-                            <li><strong>环境互动</strong>：对天气变化、场景物品产生自然反应</li>
-                            <li><strong>礼物赠送</strong>：根据喜好度展现不同惊喜表情与反馈</li>
-                            <li><strong>日常陪伴</strong>：早晚安互动与状态分享，建立真实陪伴感</li>
-                        </ul>
+                    
+                    <div class="key-points" id="keyPoints">
+                        <!-- 动态填充 -->
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 弹窗内容 -->
-    <div id="modal1" class="modal-overlay fixed inset-0 flex items-center justify-center hidden">
-        <div class="modal-content bg-white rounded-xl shadow-2xl p-6 md:p-8 relative">
-            <button class="close-modal absolute top-4 right-4 text-gray-500 hover:text-gray-700 text-2xl">
-                <i class="fa fa-times"></i>
-            </button>
-            <h3 class="text-2xl font-bold mb-4 text-center">初见阶段 - 危险魅力引探索</h3>
-            <div class="prose max-w-none">
-                <p><strong>核心目标：</strong>以 “危险魅力” 构建第一眼吸引力，激发玩家探索欲望。</p>
-                <ul class="list-disc pl-5 my-3">
-                    <li><strong>宗门任务线索：</strong>玩家接取地形绘制、药草采集等高额报酬任务，完成 X 次后发现异常 —— 同门接取的相同任务台词、报酬完全一致，由此产生 “何人指使” 的好奇，激活沟通任务。</li>
-                    <li><strong>同伴异常触发：</strong>玩家沟通表面上宗门任务发起的道友，平时精明的交易者会在沟通过程中突然停住，变得蠢笨迷糊（嘴里还含糊叫着师姐，看月亮一类的话），且宗门内 NPC 旁侧表演 “师姐... 师姐还会回来吗”，触发《师姐是谁？》任务。</li>
-                    <li><strong>倩影追踪：</strong>玩家在特定时间段前往荷塘，发现神秘身影后被拉入迷阵。通过地铁跑酷式交互躲避路障，追上倩影。成功后，曲红绡娇嗔：“你这小辈，还有两下子～” ，又言 “人家脚崴了，还不快来帮帮人家～～”，顺势欲倒入玩家怀中。</li>
-                    <li><strong>交互选择分支：</strong>
-                        <ul class="list-circle pl-5 my-2">
-                            <li><strong>【闪避一侧】：</strong>增加角色好感，但无近距离互动。</li>
-                            <li><strong>【帮她站稳】：</strong>切入近距离视角，点击腰部触发互动 “你这弟子怎么如此不老实（轻笑）”，增加印象与小事件。</li>
-                        </ul>
-                    </li>
-                    <li><strong>线索遗留：</strong>无论如何选择，曲红绡都会飞走，留下一方绢帕与成长资源（或丹方），并留下仙音：“若能下次相遇，姐姐便给你些答案～（笑）”，初见任务结束。</li>
-                </ul>
-                <p><strong>爽点设计：</strong></p>
-                <ul class="list-disc pl-5 my-3">
-                    <li>情感冲击：追逐战到投怀送抱再到突然离开，钓足玩家胃口，增强角色吸引力</li>
-                    <li>好奇不断：开始时宗门奖励勾引玩家深入任务，结束时留下资源与悬念话语，既给予玩家即时奖励，又通过 “下次相遇给答案” 的钩子，激发玩家对后续剧情的强烈好奇</li>
-                </ul>
             </div>
         </div>
     </div>
-
-    <div id="modal2" class="modal-overlay fixed inset-0 flex items-center justify-center hidden">
-        <div class="modal-content bg-white rounded-xl shadow-2xl p-6 md:p-8 relative">
-            <button class="close-modal absolute top-4 right-4 text-gray-500 hover:text-gray-700 text-2xl">
-                <i class="fa fa-times"></i>
-            </button>
-            <h3 class="text-2xl font-bold mb-4 text-center">再见阶段 - 线索试探寻合作</h3>
-            <div class="prose max-w-none">
-                <p><strong>触发条件：</strong>完成初见流程，玩家等级达到 X 级，且在水芸宗夜间地图（如洞穴、崖壁）活动。</p>
-                <ul class="list-disc pl-5 my-3">
-                    <li><strong>线索发现：</strong>玩家发现三具精血被抽干的正道弟子尸体，现场残留血色丝绢与骨粉痕迹。点击尸体调查，获得【线索・残页】，提示与神秘仙子有关。</li>
-                    <li><strong>角色现身对峙：</strong>还在低头研究尸体，空谷传来一阵笑声，还未来得及格挡，那女子手持骨剑抵在玩家脖颈：“小弟弟，深夜探案，不怕被灭口吗？”（特写镜头：红唇微勾，眼神狡黠）。</li>
-                    <li><strong>交互选择分支：</strong>
-                        <ul class="list-circle pl-5 my-2">
-                            <li><strong>【拔剑反击】：</strong>触发 10 秒限时 QTE 战斗，成功格挡或闪避后，曲红绡轻笑：“有点意思，比那些废物强多了。”（好感度 +，解锁 “强硬” 分支对话，强制合作）。</li>
-                            <li><strong>【冷静反问】：</strong>“这些人死状，和你有关？”（好感度 + +，触发剧情分支）。</li>
-                        </ul>
-                    </li>
-                    <li><strong>合作诱饵抛出：</strong>若选择 “冷静反问”，曲红绡收剑并抛出【噬灵体秘术】残卷令牌，以水芸宗功法《XXX》线索为交换，邀请玩家合作，弹出任务提示：【合作交易：探秘】。</li>
-                    <li><strong>信息部分揭露：</strong>玩家追问 “噬灵体”，曲红绡眼神闪烁，短暂沉默后冷笑：“知道太多，可是会被灭口的哦～不过……”（突然贴近玩家耳边低语）“你以为这些功法是怎么来的？那些老东西杀邪修的时候，可比我狠多了。”，再见任务结束。</li>
-                </ul>
-                <p><strong>爽点设计：</strong></p>
-                <ul class="list-disc pl-5 my-3">
-                    <li>反转冲突：从 “怀疑杀人” 到 “被邀请合作”，剧情节奏快速反转，激发玩家好奇心。</li>
-                    <li>信息差诱惑：通过 “噬灵体”“正邪秘史” 等关键词，暗示世界观深度，引导玩家探索。</li>
-                    <li>肢体互动：贴近耳边低语的特写镜头，配合音效与光影效果（如发丝拂过玩家脸颊），强化 “暧昧危险” 的感官刺激。</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <div id="modal3" class="modal-overlay fixed inset-0 flex items-center justify-center hidden">
-        <div class="modal-content bg-white rounded-xl shadow-2xl p-6 md:p-8 relative">
-            <button class="close-modal absolute top-4 right-4 text-gray-500 hover:text-gray-700 text-2xl">
-                <i class="fa fa-times"></i>
-            </button>
-            <h3 class="text-2xl font-bold mb-4 text-center">成长阶段 - 合作战斗增羁绊</h3>
-            <div class="prose max-w-none">
-                <p><strong>开启条件：</strong>完成循环好感任务达到一定程度。</p>
-                <ol class="list-decimal pl-5 my-3">
-                    <li><strong>盗取功法行动：</strong>
-                        <ul class="list-disc pl-5 my-2">
-                            <li><strong>潜入协作：</strong>玩家与曲红绡组队（邪修形象），深夜潜入藏经阁。通过五行相克逻辑用三消做个表演小游戏，破解机关阵，两人配合击碎符文；利用曲红绡的迷烟干扰巡逻长老，完成潜行。</li>
-                            <li><strong>危机爆发：</strong>成功拿到《XXX》时，藏经阁警钟骤响，宗主与三位长老包围现场。曲红绡突然将功法塞给玩家：“呆子快跑！”（触发战斗：曲红绡独自对抗长老，玩家需携带功法突围）。</li>
-                            <li><strong>情感冲击：</strong>玩家突围后回头，看到曲红绡被长老重创，骨剑断裂，嘴角溢血却仍在笑：“愣着干嘛？我一会儿就来。”（背景音乐为角色曲，好感度 ++）。</li>
-                        </ul>
-                    </li>
-                    <li><strong>正道追杀博弈：</strong>
-                        <ul class="list-disc pl-5 my-2">
-                            <li><strong>通缉悬赏：</strong>逃出后玩家与曲红绡被发布 A 级通缉令，野外随机遭遇正道追杀队（精英怪，携带克制邪修法宝，可能会禁锢角色1次）。</li>
-                            <li><strong>协同作战：</strong>曲红绡概率支援，释放范围技能（对正道高额伤害，但自身功法反噬掉血）。战斗后虚弱靠在玩家肩上：“喂…… 这次算你救我，下次可不一定了。（触发亲密互动：可以贴身治疗，点触抚摸交互）</li>
-                            <li><strong>秘密揭露：</strong>本次追杀结束后，曲红绡昏迷，玩家发现【罗刹族族谱】与【噬灵体诅咒卷轴】，解锁角色宿命诅咒背景故事（可通过动画呈现）。阅读后得知：噬灵体大成会吞噬众生，但也会被功法反噬，每动情一次，反噬威力翻倍，也明白了她的家族覆灭原因</li>
-                        </ul>
-                    </li>
-                </ol>
-                <p><strong>爽点设计：</strong></p>
-                <ul class="list-disc pl-5 my-3">
-                    <li>合作成就感：潜入与战斗的配合玩法，让玩家体验 “强强联合” 的策略快感。</li>
-                    <li>牺牲张力：曲红绡为玩家断后的剧情，强化 “危险关系中的真情”，引发玩家保护欲。</li>
-                    <li>秘密挖掘：通过道具解锁背景故事，满足玩家探索欲，同时为后续 “救赎结局” 埋下伏笔。</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <div id="modal4" class="modal-overlay fixed inset-0 flex items-center justify-center hidden">
-        <div class="modal-content bg-white rounded-xl shadow-2xl p-6 md:p-8 relative">
-            <button class="close-modal absolute top-4 right-4 text-gray-500 hover:text-gray-700 text-2xl">
-                <i class="fa fa-times"></i>
-            </button>
-            <h3 class="text-2xl font-bold mb-4 text-center">高潮阶段 - 战损喂药赴巫山</h3>
-            <div class="prose max-w-none">
-                <p><strong>核心聚焦：</strong>昏迷战损状态下的情感突破与共修秘法。不和复仇/长生牵扯太多，主要是救赎和欢愉。</p>
-                <ol class="list-decimal pl-5 my-3">
-                    <li><strong>战损互动选择：</strong>玩家靠近倒地的曲红绡，出现【安抚】【喂药】按钮。
-                        <ul class="list-disc pl-5 my-2">
-                            <li><strong>【安抚】：</strong>点击肩膀触发特写（曲红绡睁眼，血丝瞳孔映出玩家身影，心跳音效）。</li>
-                            <li><strong>【喂药】：</strong>喂药动画中，曲红绡呛咳溢血溅到玩家手背，触发隐藏线索【噬灵体血痕】（影响结局）。</li>
-                        </ul>
-                    </li>
-                    <li><strong>情感爆发抉择：</strong>
-                        <ul class="list-disc pl-5 my-2">
-                            <li>曲红绡抓住玩家手腕：“你知道吗？每动一次情，我的骨剑就会啃食我的经脉...”（展示角色战损姿态，更性感一些，有邀请的意思）。</li>
-                            <li><strong>核心选择：</strong>
-                                <ul class="list-circle pl-5 my-2">
-                                    <li>【推开她】：好感度 ---，开启「决裂结局」分支。</li>
-                                    <li>【吻她】：镜头拉近嘴唇特写，背景音消失 3 秒后响起角色专属曲《血劫・红绡叹》。随后触发动画演出：灵泉洞符文亮起，血色丝带环绕，骨剑分裂融入双方眉心，解锁「血契共修」系统，玩家获得【噬灵共鸣】技能（对正道伤害 + 15%，但击杀 10 个敌人后有概率共鸣失灵） 。</li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li><strong>「血契共修」副本：</strong>共修后开启「血契共修」音游机制副本，玩家需在角色曲时间内击中由曲红绡负面情绪幻化的「背叛之影」「孤独之骸」「杀戮之心」化为的血色蝴蝶音符增加心魔清理进度。
-                        <ul class="list-disc pl-5 my-2">
-                            <li>结束后闪现记忆碎片（如被正道追杀的童年、被迫斩杀家奴的过往），玩家连线碎片（交互点）解锁「救赎结局」关键道具【忆情纱】。</li>
-                        </ul>
-                    </li>
-                </ol>
-                <p><strong>爽点设计：</strong></p>
-                <ul class="list-disc pl-5 my-3">
-                    <li>满足玩家需求：喂药】触发关键线索影响结局，增强决策参与；【吻她】解锁技能与新玩法，满足成长目标。</li>
-                    <li>情感冲击：战损诱惑台词配合特写镜头点燃冲动，选择【吻她】后的音乐、动画演出实现情感突破。</li>
-                    <li>探索互动：音游副本将情绪化为音符，收集碎片解锁道具，融合玩法与剧情，揭开角色背景。</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <div id="modal5" class="modal-overlay fixed inset-0 flex items-center justify-center hidden">
-        <div class="modal-content bg-white rounded-xl shadow-2xl p-6 md:p-8 relative">
-            <button class="close-modal absolute top-4 right-4 text-gray-500 hover:text-gray-700 text-2xl">
-                <i class="fa fa-times"></i>
-            </button>
-            <h3 class="text-2xl font-bold mb-4 text-center">循环体验 - 短小可循环，有角色碎片信息</h3>
-            <div class="prose max-w-none">
-                <ol class="list-decimal pl-5 my-3">
-                    <li><strong>日常委托任务：</strong>
-                        <ul class="list-disc pl-5 my-2">
-                            <li><strong>邪修密令：</strong>曲红绡每周发布 3 次秘密任务（如窃取某宗门灵药、刺杀背叛者），完成后获得【血罗刹信物】（可兑换限定外观【血色轻纱】）。</li>
-                            <li><strong>情感互动：</strong>可触发 “曲红绡的问候”（如 “今天天气不错，要不要陪姐姐看月亮？”，选择 “同意” 可增加好感度并获得随机丹药）。</li>
-                        </ul>
-                    </li>
-                    <li><strong>情感事件推进：</strong>
-                        <ul class="list-disc pl-5 my-2">
-                            <li><strong>贴心惊喜：</strong>互相送礼，比如玩家在曲红绡生辰前拿到对话沟通中角色的礼物需求（说些从未过过生辰，不知道凡人究竟是怎么生活的之类的话引发玩家的心疼和共鸣），玩家可赠送专属礼物【迁意丝】（需收集材料锻造）并触发对应剧情；曲红绡也会基于特定条件回赠道具和功法。</li>
-                            <li><strong>「血契共修」：</strong>好感度满值后开启「血契共修」模式，玩家彻底击败角色心魔，解锁双人技能【生生世世】，结成情侣关系，获得成就。</li>
-                        </ul>
-                    </li>
-                </ol>
-            </div>
-        </div>
-    </div>
-
-    <div id="modal6" class="modal-overlay fixed inset-0 flex items-center justify-center hidden">
-        <div class="modal-content bg-white rounded-xl shadow-2xl p-6 md:p-8 relative">
-            <button class="close-modal absolute top-4 right-4 text-gray-500 hover:text-gray-700 text-2xl">
-                <i class="fa fa-times"></i>
-            </button>
-            <h3 class="text-2xl font-bold mb-4 text-center">结局阶段 - 不改长生万民皆苦</h3>
-            <div class="prose max-w-none">
-                <p><strong>设计原则：</strong>符合玩家长线游玩需求，不改变主线，仅为分线体验，结局事件随版本或玩家中后期剧情推进。</p>
-                <ol class="list-decimal pl-5 my-3">
-                    <li><strong>决裂结局：</strong>曲红绡企图杀玩家断情绝爱，被拆穿后悲情自白，最终死于玩家之手。</li>
-                    <li><strong>觉醒结局：</strong>曲红绡认清长生依旧无法解决她的问题，报复正道后消失，留装备给玩家。</li>
-                    <li><strong>暂别结局：</strong>曲红绡夺回功法后留在这里已无意义，修为提升后回归邪修部族光复家族，等待与玩家重逢。</li>
-                    <li><strong>救赎结局：</strong>玩家与曲红绡双修后弥补BUG，角色跟随玩家一段时间后根据两人的成长需求，决定回归邪修拉取资源，玩家留在水芸宗，继续合作恋爱，有【忆情纱】可以互相为传送锚点，进行互助/共战。</li>
-                </ol>
-            </div>
-        </div>
-    </div>
-
-    <!-- 页脚 -->
-    <footer class="bg-dark text-white py-10">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-6 md:mb-0">
-                    <div class="flex items-center space-x-2">
-                        <i class="fa fa-gamepad text-secondary text-2xl"></i>
-                        <h3 class="text-xl font-bold">曲红绡攻略分线心流体验图表</h3>
-                    </div>
-                    <p class="text-gray-400 mt-2">用“危险爱情三角”构建情感支点，打造沉浸式游戏体验</p>
-                </div>
-                <div class="flex space-x-6">
-                    <a href="#" class="text-gray-400 hover:text-secondary transition-colors duration-300">
-                        <i class="fa fa-github text-xl"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-secondary transition-colors duration-300">
-                        <i class="fa fa-twitter text-xl"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-secondary transition-colors duration-300">
-                        <i class="fa fa-linkedin text-xl"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2025 Sevy(郭慧杰). 保留所有权利.</p>
-            </div>
-        </div>
-    </footer>
 
     <script>
-        // 初始化mermaid
-        mermaid.initialize({
-            startOnLoad: true,
-            theme: 'base',
-            themeVariables: {
-                primaryColor: '#FFD1DC',
-                edgeLabelBackground: '#FFF0F5'
+        // 情绪数据 - 每个阶段都有独特的设计意图
+        const emotions = [
+            { 
+                phase: '初见阶段', 
+                subtitle: '危险魅力引探索',
+                startEmoji: '😯',
+                startEmotion: '好奇',
+                endEmoji: '😨',
+                endEmotion: '紧张',
+                intensity: 30,
+                color: '#b76e79',
+                designTarget: '建立角色第一印象，通过危险与魅力的矛盾组合激发玩家探索欲望，为后续情感发展奠定基础。',
+                designIntent: '作为策划，我们旨在通过强烈的视觉冲击和悬念设计，在玩家心中建立"危险但迷人"的第一印象。骨剑威胁与性感形象的矛盾组合，配合异常任务线索，为后续关系发展埋下伏笔。',
+                keyPoints: [
+                    {
+                        title: '视觉冲击设计',
+                        content: '红色主题视觉设计，骨剑道具突出危险特质，性感形象与危险动作形成反差魅力'
+                    },
+                    {
+                        title: '悬念钩子',
+                        content: '任务异常引发玩家推理欲望，神秘消失留下线索道具，为二次接触创造契机'
+                    },
+                    {
+                        title: '肢体语言设计',
+                        content: '近距离接触时的微妙肢体语言，传达角色复杂性格与潜在情感可能性'
+                    },
+                    {
+                        title: '多分支互动',
+                        content: '玩家选择影响初次互动结果，为后续关系发展提供不同起点'
+                    }
+                ]
+            },
+            { 
+                phase: '再见阶段', 
+                subtitle: '线索试探寻合作',
+                startEmoji: '🕵️',
+                startEmotion: '怀疑',
+                endEmoji: '😏',
+                endEmotion: '兴奋',
+                intensity: 50,
+                color: '#e6b0aa',
+                designTarget: '通过剧情反转建立合作关系，利用信息差创造博弈空间，深化角色神秘感。',
+                designIntent: '策划意图在于创造戏剧性转折，将敌对关系转化为合作可能。通过信息不对称设计，让玩家在危险与利益之间权衡，增强角色神秘感和玩家探索欲望。',
+                keyPoints: [
+                    {
+                        title: '剧情反转设计',
+                        content: '从敌对关系到合作邀约的转变，创造戏剧性转折点'
+                    },
+                    {
+                        title: '信息不对称',
+                        content: '角色掌握更多信息，形成权力不对等关系，增加博弈感'
+                    },
+                    {
+                        title: '暧昧氛围营造',
+                        content: '近距离低语、肢体接触等设计强化危险又迷人的氛围'
+                    },
+                    {
+                        title: '利益共同体',
+                        content: '建立共同目标，为后续合作提供合理动机'
+                    }
+                ]
+            },
+            { 
+                phase: '成长阶段', 
+                subtitle: '合作战斗增羁绊',
+                startEmoji: '🤝',
+                startEmotion: '合作',
+                endEmoji: '😢',
+                endEmotion: '感动',
+                intensity: 70,
+                color: '#d98880',
+                designTarget: '通过协同挑战建立情感连接，利用牺牲情节深化角色羁绊，激发玩家保护欲。',
+                designIntent: '策划目标是通过共同经历创造情感纽带。牺牲情节的设计旨在引发玩家情感共鸣，让玩家从利益合作转向情感投入，为后续关系质变奠定基础。',
+                keyPoints: [
+                    {
+                        title: '协同玩法设计',
+                        content: '双人配合的解谜与战斗机制，创造合作成就感'
+                    },
+                    {
+                        title: '牺牲情节设计',
+                        content: '关键情节中的自我牺牲行为，引发玩家情感共鸣'
+                    },
+                    {
+                        title: '背景故事揭露',
+                        content: '逐步揭示角色背景，增加情感深度与玩家认同'
+                    },
+                    {
+                        title: '情感转折点',
+                        content: '从利益合作到情感连接的转变，建立真正羁绊'
+                    }
+                ]
+            },
+            { 
+                phase: '高潮阶段', 
+                subtitle: '战损喂药赴巫山',
+                startEmoji: '💘',
+                startEmotion: '抉择',
+                endEmoji: '🔥',
+                endEmotion: '激情',
+                intensity: 95,
+                color: '#f5b7b1',
+                designTarget: '创造情感爆发点，通过关键抉择推动关系质变，实现情感与玩法的高潮融合。',
+                designIntent: '策划意图是创造情感与玩法融合的巅峰体验。通过战损状态突破角色心理防线，让玩家在关键抉择中决定关系走向，将情感突破与游戏机制完美结合。',
+                keyPoints: [
+                    {
+                        title: '战损状态设计',
+                        content: '角色脆弱状态突破心理防线，创造情感突破契机'
+                    },
+                    {
+                        title: '关键抉择点',
+                        content: '玩家选择决定关系走向，增强参与感与情感投入'
+                    },
+                    {
+                        title: '双修玩法融合',
+                        content: '将情感突破与游戏机制结合，创造独特体验'
+                    },
+                    {
+                        title: '情感记忆点',
+                        content: '设计强烈的情感符号，形成玩家记忆锚点'
+                    }
+                ]
+            },
+            { 
+                phase: '循环阶段', 
+                subtitle: '日常互动深感情',
+                startEmoji: '💞',
+                startEmotion: '甜蜜',
+                endEmoji: '☺️',
+                endEmotion: '温馨',
+                intensity: 80,
+                color: '#d7bde2',
+                designTarget: '通过日常互动巩固情感连接，创造稳定陪伴感，增强玩家长期投入意愿。',
+                designIntent: '作为策划，我们旨在通过日常互动维持情感热度。动态反馈系统让玩家感受到真实的关系进展，特殊事件设计深化情感连接，为最终结局创造情感基础。',
+                keyPoints: [
+                    {
+                        title: '日常互动系统',
+                        content: '设计多样化日常互动，维持情感热度'
+                    },
+                    {
+                        title: '动态情感反馈',
+                        content: '基于好感度的角色反应变化，创造真实关系体验'
+                    },
+                    {
+                        title: '专属事件设计',
+                        content: '生日、纪念日等特殊事件，深化情感连接'
+                    },
+                    {
+                        title: '成长可视化',
+                        content: '情感进展的视觉化反馈，增强成就感'
+                    }
+                ]
+            },
+            { 
+                phase: '结局阶段', 
+                subtitle: '宿命抉择定结局',
+                startEmoji: '🎭',
+                startEmotion: '抉择',
+                endEmoji: '💖',
+                endEmotion: '满足',
+                intensity: 85,
+                color: '#e8daef',
+                designTarget: '提供情感闭环，通过多结局设计满足不同玩家情感需求，创造完整体验。',
+                designIntent: '策划目标是为情感旅程提供圆满闭环。多结局设计尊重玩家选择，强调决策影响力，部分结局融入修仙悲剧元素，强化世界观一致性，让玩家获得深度情感满足。',
+                keyPoints: [
+                    {
+                        title: '多结局分支',
+                        content: '设计4种情感结局，满足不同玩家期待'
+                    },
+                    {
+                        title: '情感闭环设计',
+                        content: '解决核心矛盾，提供情感满足感'
+                    },
+                    {
+                        title: '玩家影响力',
+                        content: '强调玩家选择对结局的决定性作用'
+                    },
+                    {
+                        title: '悲剧美学',
+                        content: '部分结局融入修仙悲剧元素，强化世界观'
+                    }
+                ]
             }
-        });
-
-        // 选项卡切换逻辑
-        const tabBtns = document.querySelectorAll('.tab-btn');
-        const tabContents = document.querySelectorAll('.tab-content');
-
-        tabBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                tabBtns.forEach(b => b.classList.remove('tab-active'));
-                tabContents.forEach(c => c.classList.add('hidden'));
-                btn.classList.add('tab-active');
-                const contentId = btn.id.replace('tab-', 'content-');
-                document.getElementById(contentId).classList.remove('hidden');
-            });
-        });
-
-        // 平滑滚动
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    window.scrollTo({
-                        top: target.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
+        ];
+        
+        // 心流体验数据
+        const flowData = {
+            phases: ['初见阶段', '再见阶段', '成长阶段', '高潮阶段', '循环阶段', '结局阶段'],
+            visualImpact: [90, 70, 60, 95, 50, 80],
+            emotionalResonance: [30, 50, 80, 85, 70, 90],
+            decisionPressure: [40, 60, 50, 85, 40, 75],
+            feedbackIntensity: [60, 75, 80, 90, 85, 70]
+        };
+        
+        // 创建情感体验图表
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('emotionCoaster').getContext('2d');
+            
+            // 图表数据
+            const data = {
+                labels: emotions.map(e => e.phase),
+                datasets: [
+                    {
+                        label: '情绪强度',
+                        data: emotions.map(e => e.intensity),
+                        backgroundColor: emotions.map(e => e.color + '40'),
+                        borderColor: '#b76e79',
+                        borderWidth: 4,
+                        tension: 0.4,
+                        pointRadius: 8,
+                        pointHoverRadius: 12,
+                        pointBackgroundColor: '#fff',
+                        pointBorderColor: emotions.map(e => e.color),
+                        pointBorderWidth: 3,
+                        fill: true
+                    }
+                ]
+            };
+            
+            // 图表配置
+            const config = {
+                type: 'line',
+                data: data,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                            titleColor: '#5d4037',
+                            bodyColor: '#7d5d5d',
+                            borderColor: 'rgba(183, 110, 121, 0.3)',
+                            borderWidth: 1,
+                            padding: 15,
+                            displayColors: false,
+                            callbacks: {
+                                title: function(tooltipItems) {
+                                    const index = tooltipItems[0].dataIndex;
+                                    return `${emotions[index].phase} (${emotions[index].intensity}%)`;
+                                },
+                                label: function(context) {
+                                    const index = context.dataIndex;
+                                    return `${emotions[index].startEmotion} → ${emotions[index].endEmotion}: 玩家情绪从${emotions[index].startEmotion}转变为${emotions[index].endEmotion}`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.05)'
+                            },
+                            ticks: {
+                                color: '#7d5d5d',
+                                callback: function(value) {
+                                    return value + '%';
+                                }
+                            },
+                            title: {
+                                display: true,
+                                text: '情绪强度',
+                                color: '#5d4037',
+                                font: {
+                                    weight: 'bold'
+                                }
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                color: '#5d4037',
+                                font: {
+                                    weight: '500'
+                                }
+                            }
+                        }
+                    },
+                    interaction: {
+                        mode: 'index',
+                        intersect: false
+                    },
+                    animation: {
+                        duration: 2000,
+                        easing: 'easeOutQuart'
+                    },
+                    onClick: (e, elements) => {
+                        if (elements.length > 0) {
+                            const index = elements[0].index;
+                            showPhaseModal(index);
+                        }
+                    }
                 }
+            };
+            
+            // 创建情感体验图表
+            const emotionChart = new Chart(ctx, config);
+            
+            // 创建心流体验图表
+            const flowCtx = document.getElementById('heartFlowChart').getContext('2d');
+            const flowConfig = {
+                type: 'line',
+                data: {
+                    labels: flowData.phases,
+                    datasets: [
+                        {
+                            label: '视觉冲击',
+                            data: flowData.visualImpact,
+                            borderColor: 'var(--visual)',
+                            backgroundColor: 'rgba(183, 110, 121, 0.1)',
+                            borderWidth: 3,
+                            tension: 0.3,
+                            pointRadius: 6,
+                            pointHoverRadius: 10,
+                            pointBackgroundColor: '#fff',
+                            pointBorderWidth: 2,
+                            fill: true
+                        },
+                        {
+                            label: '情感共鸣',
+                            data: flowData.emotionalResonance,
+                            borderColor: 'var(--emotion)',
+                            backgroundColor: 'rgba(230, 176, 170, 0.1)',
+                            borderWidth: 3,
+                            tension: 0.3,
+                            pointRadius: 6,
+                            pointHoverRadius: 10,
+                            pointBackgroundColor: '#fff',
+                            pointBorderWidth: 2,
+                            fill: true
+                        },
+                        {
+                            label: '决策压力',
+                            data: flowData.decisionPressure,
+                            borderColor: 'var(--decision)',
+                            backgroundColor: 'rgba(217, 136, 128, 0.1)',
+                            borderWidth: 3,
+                            tension: 0.3,
+                            pointRadius: 6,
+                            pointHoverRadius: 10,
+                            pointBackgroundColor: '#fff',
+                            pointBorderWidth: 2,
+                            fill: true
+                        },
+                        {
+                            label: '操作反馈',
+                            data: flowData.feedbackIntensity,
+                            borderColor: 'var(--feedback)',
+                            backgroundColor: 'rgba(215, 189, 226, 0.1)',
+                            borderWidth: 3,
+                            tension: 0.3,
+                            pointRadius: 6,
+                            pointHoverRadius: 10,
+                            pointBackgroundColor: '#fff',
+                            pointBorderWidth: 2,
+                            fill: true
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                            titleColor: '#5d4037',
+                            bodyColor: '#7d5d5d',
+                            borderColor: 'rgba(183, 110, 121, 0.3)',
+                            borderWidth: 1,
+                            padding: 15,
+                            displayColors: true,
+                            callbacks: {
+                                title: function(tooltipItems) {
+                                    return tooltipItems[0].label;
+                                },
+                                label: function(context) {
+                                    return `${context.dataset.label}: ${context.raw}%`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.05)'
+                            },
+                            ticks: {
+                                color: '#7d5d5d',
+                                callback: function(value) {
+                                    return value + '%';
+                                }
+                            },
+                            title: {
+                                display: true,
+                                text: '体验强度',
+                                color: '#5d4037',
+                                font: {
+                                    weight: 'bold'
+                                }
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                color: '#5d4037',
+                                font: {
+                                    weight: '500'
+                                }
+                            }
+                        }
+                    },
+                    interaction: {
+                        mode: 'index',
+                        intersect: false
+                    },
+                    animation: {
+                        duration: 2000,
+                        easing: 'easeOutQuart'
+                    }
+                }
+            };
+            
+            // 创建心流体验图表
+            const heartFlowChart = new Chart(flowCtx, flowConfig);
+            
+            // 模态框操作
+            const modal = document.getElementById('phaseModal');
+            const closeModal = document.getElementById('closeModal');
+            
+            // 关闭模态框
+            closeModal.addEventListener('click', () => {
+                modal.style.display = 'none';
             });
-        });
-
-        // 弹窗交互
-        const modalCards = document.querySelectorAll('[data-modal]');
-        const modals = document.querySelectorAll('.modal-overlay');
-        const closeButtons = document.querySelectorAll('.close-modal');
-
-        modalCards.forEach(card => {
-            card.addEventListener('click', () => {
-                const modalId = card.getAttribute('data-modal');
-                const modal = document.getElementById(modalId);
-                modal.classList.remove('hidden');
-                setTimeout(() => modal.classList.add('active'), 10);
-                document.body.style.overflow = 'hidden';
-            });
-        });
-
-        closeButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const modal = button.closest('.modal-overlay');
-                modal.classList.remove('active');
-                setTimeout(() => modal.classList.add('hidden'), 300);
-                document.body.style.overflow = '';
-            });
-        });
-
-        modals.forEach(modal => {
-            modal.addEventListener('click', (e) => {
+            
+            // 点击外部关闭模态框
+            window.addEventListener('click', (e) => {
                 if (e.target === modal) {
-                    modal.classList.remove('active');
-                    setTimeout(() => modal.classList.add('hidden'), 300);
-                    document.body.style.overflow = '';
+                    modal.style.display = 'none';
                 }
+            });
+            
+            // 显示阶段模态框
+            function showPhaseModal(index) {
+                const phase = emotions[index];
+                
+                // 更新模态框内容
+                document.getElementById('modalTitle').textContent = phase.phase;
+                document.getElementById('modalSubtitle').textContent = phase.subtitle;
+                document.getElementById('startEmoji').textContent = phase.startEmoji;
+                document.getElementById('startEmotion').textContent = phase.startEmotion;
+                document.getElementById('endEmoji').textContent = phase.endEmoji;
+                document.getElementById('endEmotion').textContent = phase.endEmotion;
+                document.getElementById('intensityValue').textContent = `${phase.intensity}%`;
+                document.getElementById('intensityFill').style.width = `${phase.intensity}%`;
+                document.getElementById('intensityFill').style.backgroundColor = phase.color;
+                document.getElementById('designTarget').textContent = phase.designTarget;
+                document.getElementById('designIntent').textContent = phase.designIntent;
+                
+                // 更新关键点
+                const keyPointsContainer = document.getElementById('keyPoints');
+                keyPointsContainer.innerHTML = '';
+                
+                phase.keyPoints.forEach((point, idx) => {
+                    const pointElement = document.createElement('div');
+                    pointElement.className = 'key-point';
+                    pointElement.innerHTML = `
+                        <div class="point-icon">
+                            <i class="fas fa-${idx + 1}"></i>
+                        </div>
+                        <div class="point-content">
+                            <strong>${point.title}</strong>
+                            <p>${point.content}</p>
+                        </div>
+                    `;
+                    keyPointsContainer.appendChild(pointElement);
+                });
+                
+                // 显示模态框
+                modal.style.display = 'flex';
+            }
+            
+            // 为图例添加点击事件
+            document.querySelectorAll('.legend-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    const phaseIndex = parseInt(item.getAttribute('data-phase'));
+                    if (!isNaN(phaseIndex)) {
+                        showPhaseModal(phaseIndex);
+                    }
+                });
             });
         });
     </script>
