@@ -1344,8 +1344,14 @@
                             bodyColor: '#b0a0c0',
                             borderColor: 'rgba(183, 110, 121, 0.5)',
                             borderWidth: 1,
-                            padding: 15,
+                            padding: 30,
                             displayColors: false,
+                            titleFont: {
+                                size: 26
+                            },
+                            bodyFont: {
+                                size: 24
+                            },
                             callbacks: {
                                 title: function(tooltipItems) {
                                     const index = tooltipItems[0].dataIndex;
@@ -1484,8 +1490,14 @@
                             bodyColor: '#b0a0c0',
                             borderColor: 'rgba(183, 110, 121, 0.5)',
                             borderWidth: 1,
-                            padding: 15,
+                            padding: 30,
                             displayColors: true,
+                            titleFont: {
+                                size: 26
+                            },
+                            bodyFont: {
+                                size: 24
+                            },
                             callbacks: {
                                 title: function(tooltipItems) {
                                     return tooltipItems[0].label;
@@ -1543,6 +1555,64 @@
             
             // 创建心流体验图表
             const heartFlowChart = new Chart(flowCtx, flowConfig);
+            
+            // 存储数据集可见状态
+            const datasetVisibility = {
+                visualImpact: true,
+                emotionalResonance: true,
+                decisionPressure: true,
+                feedbackIntensity: true
+            };
+            
+            // 为图例项添加切换功能
+            document.querySelectorAll('.legend-item').forEach(item => {
+                const type = item.querySelector('span').textContent;
+                const icon = document.createElement('i');
+                icon.className = 'fas fa-eye';
+                icon.style.marginLeft = '10px';
+                icon.style.cursor = 'pointer';
+                item.appendChild(icon);
+                
+                icon.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    
+                    // 切换可见状态
+                    let datasetIndex;
+                    switch(type) {
+                        case '视觉冲击':
+                            datasetVisibility.visualImpact = !datasetVisibility.visualImpact;
+                            datasetIndex = 0;
+                            break;
+                        case '情感共鸣':
+                            datasetVisibility.emotionalResonance = !datasetVisibility.emotionalResonance;
+                            datasetIndex = 1;
+                            break;
+                        case '决策压力':
+                            datasetVisibility.decisionPressure = !datasetVisibility.decisionPressure;
+                            datasetIndex = 2;
+                            break;
+                        case '操作反馈':
+                            datasetVisibility.feedbackIntensity = !datasetVisibility.feedbackIntensity;
+                            datasetIndex = 3;
+                            break;
+                    }
+                    
+                    // 更新图表
+                    heartFlowChart.setDatasetVisibility(datasetIndex, datasetVisibility[Object.keys(datasetVisibility)[datasetIndex]]);
+                    heartFlowChart.update();
+                    
+                    // 更新图标
+                    if (icon.classList.contains('fa-eye')) {
+                        icon.classList.remove('fa-eye');
+                        icon.classList.add('fa-eye-slash');
+                        icon.style.color = '#999';
+                    } else {
+                        icon.classList.remove('fa-eye-slash');
+                        icon.classList.add('fa-eye');
+                        icon.style.color = '';
+                    }
+                });
+            });
             
             // 模态框操作
             const modal = document.getElementById('phaseModal');
