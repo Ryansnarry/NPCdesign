@@ -15,15 +15,15 @@
             --love: #f5b7b1;
             --need: #d7bde2;
             --relation: #e8daef;
-            --dark: #e0d7e9;
-            --light: #0a0e1a;
+            --dark: #0a0e1a;
+            --light: #e0d7e9;
             --card-bg: rgba(19, 24, 48, 0.8);
             --shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
             --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            --visual: #b76e79;       /* 视觉冲击 - 红色 */
-            --emotion: #e6b0aa;      /* 情感共鸣 - 粉色 */
-            --decision: #5d8aa8;     /* 决策压力 - 蓝色 */
-            --feedback: #98bf64;     /* 操作反馈 - 绿色 */
+            --visual: #b76e79;
+            --emotion: #e6b0aa;
+            --decision: #5d8aa8;
+            --feedback: #98bf64;
             --starry-bg: #0a0e1a;
             --lotus-pink: #f8c6d9;
         }
@@ -37,7 +37,7 @@
         body {
             font-family: 'Noto Sans SC', sans-serif;
             background: var(--starry-bg);
-            color: var(--dark);
+            color: var(--light);
             line-height: 1.6;
             min-height: 100vh;
             padding: 20px;
@@ -45,7 +45,6 @@
             position: relative;
         }
 
-        /* 星空背景 */
         .starry-sky {
             position: fixed;
             top: 0;
@@ -63,7 +62,6 @@
             animation: twinkle var(--duration, 4s) infinite ease-in-out;
         }
 
-        /* 荷花池 */
         .lotus-pond {
             position: fixed;
             bottom: 0;
@@ -115,7 +113,6 @@
             animation: leaf-sway 10s infinite ease-in-out;
         }
 
-        /* 动画 */
         @keyframes twinkle {
             0%, 100% { opacity: 0.2; }
             50% { opacity: 1; }
@@ -140,7 +137,6 @@
             z-index: 1;
         }
 
-        /* 头部区域 */
         .header-section {
             text-align: center;
             padding: 40px 20px;
@@ -169,7 +165,7 @@
             font-size: 2.8rem;
             font-weight: 700;
             margin-bottom: 15px;
-            color: var(--dark);
+            color: var(--light);
             position: relative;
             z-index: 2;
             text-shadow: 0 0 15px rgba(183, 110, 121, 0.7);
@@ -213,7 +209,6 @@
             color: var(--primary);
         }
 
-        /* 图表区域 */
         .chart-section {
             background: var(--card-bg);
             border-radius: 20px;
@@ -234,7 +229,7 @@
         .section-title {
             font-size: 2rem;
             font-weight: 700;
-            color: var(--dark);
+            color: var(--light);
             position: relative;
             display: inline-block;
             margin-bottom: 20px;
@@ -309,7 +304,6 @@
             border-radius: 50%;
         }
 
-        /* 模态框 */
         .modal {
             display: none;
             position: fixed;
@@ -364,7 +358,7 @@
         .modal-title {
             font-size: 1.8rem;
             font-weight: 700;
-            color: var(--dark);
+            color: var(--light);
             margin-bottom: 5px;
             text-shadow: 0 0 8px rgba(183, 110, 121, 0.5);
         }
@@ -392,7 +386,7 @@
         .section-title-card {
             font-size: 1.3rem;
             font-weight: 600;
-            color: var(--dark);
+            color: var(--light);
             margin-bottom: 15px;
             display: flex;
             align-items: center;
@@ -407,9 +401,10 @@
 
         .emotion-section {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             margin-bottom: 15px;
+            flex-wrap: wrap;
         }
 
         .emotion-card {
@@ -417,9 +412,11 @@
             padding: 15px;
             border-radius: 10px;
             flex: 1;
-            max-width: 45%;
+            min-width: 120px;
+            max-width: 30%;
             background: rgba(183, 110, 121, 0.15);
             box-shadow: inset 0 0 15px rgba(183, 110, 121, 0.2);
+            margin: 0 5px;
         }
 
         .emotion-emoji {
@@ -431,7 +428,7 @@
         .emotion-text {
             font-size: 1.1rem;
             font-weight: 500;
-            color: var(--dark);
+            color: var(--light);
         }
 
         .emotion-arrow {
@@ -458,7 +455,7 @@
 
         .intensity-label {
             font-weight: 600;
-            color: var(--dark);
+            color: var(--light);
         }
 
         .intensity-value {
@@ -522,6 +519,7 @@
             display: flex;
             margin-bottom: 15px;
             align-items: flex-start;
+            position: relative;
         }
 
         .point-icon {
@@ -545,10 +543,9 @@
         }
 
         .point-content strong {
-            color: var(--dark);
+            color: var(--light);
         }
 
-        /* 新增的心流分析部分 */
         .flow-analysis {
             margin-top: 30px;
             padding-top: 20px;
@@ -579,7 +576,7 @@
         .flow-card-title {
             font-size: 1.2rem;
             font-weight: 600;
-            color: var(--dark);
+            color: var(--light);
             margin-bottom: 15px;
             display: flex;
             align-items: center;
@@ -627,7 +624,7 @@
         .flow-analysis-title {
             font-size: 1.4rem;
             font-weight: 700;
-            color: var(--dark);
+            color: var(--light);
             margin-bottom: 15px;
             display: flex;
             align-items: center;
@@ -640,7 +637,6 @@
             text-shadow: 0 0 8px var(--primary);
         }
 
-        /* 页脚 */
         footer {
             text-align: center;
             padding: 40px 0;
@@ -648,6 +644,75 @@
             font-size: 1.05rem;
             margin-top: 50px;
             border-top: 1px solid rgba(183, 110, 121, 0.3);
+        }
+
+        .detail-container {
+            margin-top: 15px;
+            background: rgba(183, 110, 121, 0.15);
+            border-radius: 8px;
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            box-shadow: inset 0 0 8px rgba(183, 110, 121, 0.2);
+        }
+        
+        .detail-container.active {
+            max-height: 1000px;
+            padding: 15px;
+        }
+        
+        .detail-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .detail-title {
+            font-weight: 600;
+            color: var(--light);
+            font-size: 1.1rem;
+        }
+        
+        .detail-content {
+            color: #d0c0e0;
+            line-height: 1.7;
+            font-size: 1rem;
+            padding: 10px 0;
+        }
+        
+        .detail-toggle-btn {
+            background: var(--primary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 8px var(--primary);
+            border: none;
+            outline: none;
+            font-size: 0.9rem;
+        }
+        
+        .detail-toggle-btn:hover {
+            transform: scale(1.05);
+            background: #c47b86;
+        }
+        
+        .point-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+        
+        .point-title {
+            display: flex;
+            align-items: center;
         }
 
         @keyframes fadeIn {
@@ -692,6 +757,7 @@
             .emotion-arrow {
                 transform: rotate(90deg);
                 margin: 10px 0;
+                padding: 10px 0;
             }
             
             .flow-grid {
@@ -700,6 +766,11 @@
             
             .lotus {
                 transform: scale(0.8);
+            }
+            
+            .detail-toggle-btn {
+                padding: 5px 10px;
+                font-size: 0.8rem;
             }
         }
     </style>
@@ -715,7 +786,7 @@
         <!-- 头部区域 -->
         <section class="header-section">
             <h1>曲红绡·分线体验</h1>
-            <p class="subtitle">星河为幕，荷花为伴 - 从初见到结局的体验旅程</p>
+            <p class="subtitle">野心与救赎-从初见到结局的体验旅程</p>
             
             <div class="designer-info">
                 <div class="designer-card">
@@ -724,7 +795,7 @@
                 </div>
                 <div class="designer-card">
                     <i class="fas fa-calendar"></i>
-                    <span>版本：1.0.0</span>
+                    <span>版本：1.2.0</span>
                 </div>
                 <div class="designer-card">
                     <i class="fas fa-tags"></i>
@@ -818,7 +889,7 @@
                         <div class="flow-card-content">
                             <p>通过强烈的视觉元素建立第一印象，形成玩家记忆锚点：</p>
                             <ul>
-                                <li>星空下的红唇骨剑视觉冲击</li>
+                                <li>红唇骨剑的视觉冲击</li>
                                 <li>荷花池畔的性感形象</li>
                                 <li>高潮期战损共修的情欲表现</li>
                                 <li>血色丝带与骨剑特效</li>
@@ -897,16 +968,8 @@
                     <div class="section-title-card">
                         <i class="fas fa-heartbeat"></i> 核心情绪变化
                     </div>
-                    <div class="emotion-section">
-                        <div class="emotion-card">
-                            <div class="emotion-emoji" id="startEmoji">😯</div>
-                            <div class="emotion-text" id="startEmotion">好奇</div>
-                        </div>
-                        <div class="emotion-arrow">→</div>
-                        <div class="emotion-card">
-                            <div class="emotion-emoji" id="endEmoji">😨</div>
-                            <div class="emotion-text" id="endEmotion">紧张</div>
-                        </div>
+                    <div class="emotion-section" id="emotionFlow">
+                        <!-- 动态生成情绪卡片 -->
                     </div>
                     
                     <div class="intensity-section">
@@ -1015,15 +1078,16 @@
             }
         }
         
-        // 情绪数据 - 每个阶段都有独特的设计意图
+        // 情绪数据 - 每个阶段都有独特的设计意图和详细流程
         const emotions = [
             { 
                 phase: '初见阶段', 
                 subtitle: '危险魅力引探索',
-                startEmoji: '😯',
-                startEmotion: '好奇',
-                endEmoji: '😨',
-                endEmotion: '紧张',
+                emotionFlow: [
+                    { emoji: '😯', emotion: '好奇' },
+                    { emoji: '😨', emotion: '紧张' },
+                    { emoji: '🤩', emotion: '期待' }
+                ],
                 intensity: 30,
                 color: '#b76e79',
                 designTarget: '建立角色第一印象，通过危险与性感的矛盾组合激发玩家探索欲望，为后续情感发展奠定基础。',
@@ -1031,29 +1095,34 @@
                 keyPoints: [
                     {
                         title: '悬念钩子',
-                        content: '任务异常引发玩家推理欲望，神秘消失留下线索道具，为二次接触创造契机具'
+                        content: '任务异常引发玩家推理欲望，神秘消失留下线索道具，为二次接触创造契机',
+                        details: '玩家完成高额报酬任务时发现从不同的发布者处发布的任务相同，任务描述完全一致，任务发布者还总是谈起师姐、月亮之类的话。由此产生"何人指使"的好奇，激活沟通任务。'
                     },
                     {
                         title: '视觉冲击',
-                        content: '红色主题视觉设计，骨剑道具突出危险特质，性感形象与危险动作形成反差魅力'
+                        content: '红色主题视觉设计，骨剑道具突出危险特质，性感形象与危险动作形成反差魅力',
+                        details: '通过星空下的红唇骨剑飘飘倩影的视觉冲击和荷花池畔的性感形象设计，配合血色丝带与骨剑特效，建立强烈的第一印象。'
                     },
                     {
                         title: '肢体语言设计',
-                        content: '近距离接触时的微妙肢体语言，传达角色复杂性格与潜在情感可能性'
+                        content: '近距离接触时的微妙肢体语言，传达角色复杂性格与潜在情感可能性',
+                        details: '在情感追踪中，曲红绮娇嗔："你这小子倒还有两下子～"，又言"人家脚崴了，还不快来帮帮人家～～"，顺势欲倒入玩家怀中。'
                     },
                     {
                         title: '突然结束的相遇',
-                        content: '追逐战到投怀送抱再到突然离开，钓足玩家胃口，增强角色吸引力'
+                        content: '追逐战到投怀送抱再到突然离开，钓足玩家胃口，增强角色吸引力',
+                        details: '玩家误以为还有后续时仙子会突然飞走，留下一方香帕与一些赠礼，并留下仙音："若能下次相遇，姐姐便给你些答案～（笑）"，初见任务结束。'
                     }
                 ]
             },
             { 
                 phase: '再见阶段', 
                 subtitle: '线索试探寻合作',
-                startEmoji: '🕵️',
-                startEmotion: '怀疑',
-                endEmoji: '😏',
-                endEmotion: '兴奋',
+                emotionFlow: [
+                    { emoji: '🕵️', emotion: '怀疑' },
+                    { emoji: '😏', emotion: '兴奋' },
+                    { emoji: '🤩', emotion: '期待' }
+                ],
                 intensity: 53,
                 color: '#e6b0aa',
                 designTarget: '通过剧情反转建立合作关系，利用信息差创造博弈空间，深化角色神秘感。',
@@ -1061,29 +1130,33 @@
                 keyPoints: [
                     {
                         title: '剧情反转设计',
-                        content: '从敌对关系到合作邀约的转变，创造戏剧性转折点'
+                        content: '从敌对关系到合作邀约的转变，创造戏剧性转折点',
+                        details: '玩家发现三具正道弟子尸体，现场残留血色丝绢与骨粉痕迹。还在低头研究尸体，空谷传来一阵突声，还未来得及格挡，那女子手持骨剑抵死玩家脖颈："小弟弟，深夜探案，不怕被灭口吗？"'
                     },
                     {
                         title: '信息不对称',
-                        content: '角色掌握更多信息，形成权力不对等关系，增加博弈感'
+                        content: '角色掌握更多信息，形成权力不对等关系，增加博弈感',
+                        details: '曲红绡逗弄玩家说几人都是她杀的，模糊真相，玩家见招拆招，获得曲红绡的任何和合作邀约。'
                     },
                     {
                         title: '暧昧氛围营造',
-                        content: '近距离低语、肢体接触等设计强化危险又迷人的氛围'
+                        content: '近距离低语、肢体接触等设计强化危险又迷人的氛围',
+                        details: '玩家追回"噬灵体"，曲红绮眼神闪烁，短暂沉默后冷笑："知道太多，可是会被灭口的哦～不过……"（突然贴近玩家耳边低语）"你以为这些功法是怎么来的？那些老东西杀人的时候，可比我狠多了。"'
                     },
                     {
                         title: '利益共同体',
-                        content: '建立共同目标，为后续合作提供合理动机'
+                        content: '建立共同目标，为后续合作提供合理动机',
+                        details: '曲红绮："算你聪明，看到这令牌了吗？元洪长老争抢的【噬灵体秘术】残卷，就在我手里——正道长老又如何长生路上哪有无辜……角色沉吟一阵，只要你帮我打探到镇门功法《XXX》的线索，这残卷就是你的，我也不杀你，如何？"'
                     }
                 ]
             },
             { 
                 phase: '成长阶段', 
                 subtitle: '合作战斗增羁绊',
-                startEmoji: '🤝',
-                startEmotion: '合作',
-                endEmoji: '😢',
-                endEmotion: '感动',
+                emotionFlow: [
+                    { emoji: '🤝', emotion: '合作' },
+                    { emoji: '😢', emotion: '感动' }
+                ],
                 intensity: 70,
                 color: '#d98880',
                 designTarget: '通过协同挑战建立情感连接，利用牺牲情节深化角色羁绊，激发玩家保护欲。',
@@ -1091,59 +1164,67 @@
                 keyPoints: [
                     {
                         title: '协同玩法设计',
-                        content: '双人配合的解谜与战斗机制，创造合作成就感'
+                        content: '双人配合的解谜与战斗机制，创造合作成就感',
+                        details: '玩家与曲红绡组队（邪修形象），深夜潜入藏经阁。通过五行相克逻辑做个表演小游戏，破解机关阵，两人配合击碎符文；利用曲红绡的迷烟干扰巡逻长老，完成潜行。'
                     },
                     {
                         title: '牺牲情节设计',
-                        content: '关键情节中的自我牺牲行为，引发玩家情感共鸣'
-                    },
-                    {
-                        title: '背景故事揭露',
-                        content: '逐步揭示角色背景，增加情感深度与玩家认同'
+                        content: '关键情节中的自我牺牲行为，引发玩家情感共鸣',
+                        details: '成功拿到《XXX》时，藏经阁警钟骤响，亲主与三位长老包围现场。曲红绡突然将功法塞给玩家："呆子快跑！"（触发战斗：曲红绡独自对抗长老，玩家需携带功法突围）。'
                     },
                     {
                         title: '情感转折点',
-                        content: '从利益合作到情感连接的转变，建立真正羁绊'
+                        content: '从利益合作到情感连接的转变，建立真正羁绊',
+                        details: '玩家突围后回头，看到曲红绡被长老重创，骨剑断裂，嘴角溢血却仍在笑："愣着干嘛？我一会儿就来。"（背景音乐为角色曲，好感度++）。' 
+                    },
+                    {
+                        title: '背景故事揭露',
+                        content: '逐步揭示角色背景，增加情感深度与玩家认同',
+                        details: '本次追杀结束后，曲红绡重伤昏迷，玩家发现【罗刹族族谱】与【噬灵体诅咒卷轴】，解锁角色宿命诅咒背景故事（可通过动画呈现）。'
                     }
                 ]
             },
             { 
                 phase: '高潮阶段', 
                 subtitle: '战损喂药赴巫山',
-                startEmoji: '💘',
-                startEmotion: '抉择',
-                endEmoji: '🔥',
-                endEmotion: '激情',
-                intensity: 99,
+                emotionFlow: [
+                    { emoji: '💘', emotion: '抉择' },
+                    { emoji: '🔥', emotion: '激情' }
+                ],
+                intensity: 95,
                 color: '#f5b7b1',
                 designTarget: '创造情感爆发点，通过关键抉择推动关系质变，实现情感与玩法的高潮融合。',
                 designIntent: '创造情感与玩法融合的巅峰体验。通过战损状态突破角色心理防线，让玩家在关键抉择中决定关系走向，将情感突破与游戏机制完美结合。',
                 keyPoints: [
                     {
                         title: '战损状态设计',
-                        content: '角色脆弱状态突破心理防线，创造情感突破契机'
+                        content: '角色脆弱状态突破心理防线，创造情感突破契机',
+                        details: '玩家靠近倒地的曲红绡，出现【安抚】【喂药】按钮。喂药动画中，曲红绡脆弱易碎，并暴露自身嗜灵体缺陷，触发隐藏线索【噬灵体血痕】（影响结局）。'
                     },
                     {
                         title: '关键抉择点',
-                        content: '玩家选择决定关系走向，增强参与感与情感投入'
+                        content: '玩家选择决定关系走向，增强参与感与情感投入',
+                        details: '曲红绡抓住玩家手腕："你知道吗？每动一次情，我的骨剑就会啃食我的精血……" 玩家可选择【推开地】或【吻地】，分别开启不同结局分支。'
                     },
                     {
                         title: '双修玩法融合',
-                        content: '将情感突破与游戏机制结合，创造独特体验'
+                        content: '将情感突破与游戏机制结合，创造独特体验',
+                        details: '选择【吻地】后触发动画演出：灵泉洞符文亮起，血色丝带环绕，骨剑分裂融入双方眉心，解锁【血契共修】系统，近距离抚摸交互加入，后续玩家获得【噬灵共鸣】技能。'
                     },
                     {
                         title: '情感记忆点',
-                        content: '设计强烈的情感符号，形成玩家记忆锚点'
+                        content: '设计强烈的情感符号，形成玩家记忆锚点',
+                        details: '共修后开启【血契共修】音阶机制副本，播放角色曲，道出角色一生宿命与挣扎，玩家需在角色曲时间内击中曲红绡负面情绪幻化的「背叛之影」「孤独之傲」「杀戮之心」，救赎角色。'
                     }
                 ]
             },
             { 
                 phase: '循环阶段', 
                 subtitle: '日常互动深感情',
-                startEmoji: '💞',
-                startEmotion: '甜蜜',
-                endEmoji: '☺️',
-                endEmotion: '温馨',
+                emotionFlow: [
+                    { emoji: '💞', emotion: '甜蜜' },
+                    { emoji: '☺️', emotion: '温馨' }
+                ],
                 intensity: 80,
                 color: '#d7bde2',
                 designTarget: '通过日常互动巩固情感连接，创造稳定陪伴感，增强玩家长期投入意愿。',
@@ -1151,29 +1232,33 @@
                 keyPoints: [
                     {
                         title: '日常互动系统',
-                        content: '设计多样化日常互动，维持情感热度'
+                        content: '设计多样化日常互动，维持情感热度',
+                        details: '曲红绡每周发布3次秘密任务（如窃取某宗门灵药、刺杀背叛者），完成后获得【血罗刹信仰】（可兑换限定外观【血色轻纱】）。'
                     },
                     {
                         title: '动态情感反馈',
-                        content: '基于好感度的角色反应变化，创造真实关系体验'
+                        content: '基于好感度的角色反应变化，创造真实关系体验',
+                        details: '可触发"曲红绡的问候"（如"今天天气不错，要不要陪姐姐看月亮？"），选择"同意"可增加好感度并获得随机丹药。'
                     },
                     {
                         title: '专属事件设计',
-                        content: '生日、纪念日等特殊事件，深化情感连接'
+                        content: '生日、纪念日等特殊事件，深化情感连接',
+                        details: '玩家在曲红绡生日前拿到对话的通中角色的礼物需求（说些从未过过生辰，不知道凡人究竟是怎么生活的之类的话引发玩家的心疼和共鸣），玩家可能选择与角色【正态】（需收集材料链接）并触发对应剧情。'
                     },
                     {
                         title: '成长可视化',
-                        content: '情感进展的视觉化反馈，增强成就感'
+                        content: '情感进展的视觉化反馈，增强成就感',
+                        details: '好感度满值后开启「血契共修」模式，玩家彻底击败角色心魔，解锁双人技能【生生世世】，结成情侣关系，获得成就。'
                     }
                 ]
             },
             { 
                 phase: '结局阶段', 
                 subtitle: '宿命抉择定结局',
-                startEmoji: '🎭',
-                startEmotion: '抉择',
-                endEmoji: '💖',
-                endEmotion: '满足',
+                emotionFlow: [
+                    { emoji: '🎭', emotion: '抉择' },
+                    { emoji: '💖', emotion: '满足' }
+                ],
                 intensity: 85,
                 color: '#e8daef',
                 designTarget: '提供情感闭环，通过多结局设计满足不同玩家情感需求，创造完整体验。',
@@ -1181,19 +1266,23 @@
                 keyPoints: [
                     {
                         title: '多结局分支',
-                        content: '设计4种情感结局，满足不同玩家期待'
+                        content: '设计4种情感结局，满足不同玩家期待',
+                        details: '1. 决裂结局：曲红绡会因未玩家断情绝爱，被拆穿后悲情自白，最终死于玩家之手。<br>2. 觉醒结局：曲红绡以成长性依旧无法解决的问题，报复正道后消失，留装备给玩家。<br>3. 智别结局：曲红绡每日功法后留在这里已无意义，修为提升后回归邪修游戏恢复家族，等待与玩家重逢。<br>4. 救赎结局：玩家与曲红绡双修后弥补BUG，角色跟随玩家一段时间后根据两人的成长需求，决定回归邪修拉取资源，玩家留在水芸宗，继续合作恋爱。'
                     },
                     {
                         title: '情感闭环设计',
-                        content: '解决核心矛盾，提供情感满足感'
+                        content: '解决核心矛盾，提供情感满足感',
+                        details: '结局事件随版本或玩家中后期剧情推进，符合玩家长线游玩需求，不改变主线，仅为分线体验。'
                     },
                     {
                         title: '玩家影响力',
-                        content: '强调玩家选择对结局的决定性作用'
+                        content: '强调玩家选择对结局的决定性作用',
+                        details: '在高潮阶段的关键抉择（如是否吻地）以及后续的互动选择，会直接影响最终结局走向，增强玩家的参与感和责任感。'
                     },
                     {
                         title: '悲剧美学',
-                        content: '部分结局融入修仙悲剧元素，强化世界观'
+                        content: '部分结局融入修仙悲剧元素，强化世界观',
+                        details: '在决裂结局和觉醒结局中，融入修仙世界的残酷性和宿命感，体现"修仙长生万民皆苦"的主题，增强世界观深度。'
                     }
                 ]
             }
@@ -1264,7 +1353,8 @@
                                 },
                                 label: function(context) {
                                     const index = context.dataIndex;
-                                    return `${emotions[index].startEmotion} → ${emotions[index].endEmotion}: 玩家情绪从${emotions[index].startEmotion}转变为${emotions[index].endEmotion}`;
+                                    const emotionsText = emotions[index].emotionFlow.map(e => e.emotion).join(' → ');
+                                    return `${emotionsText}: 玩家情绪变化`;
                                 }
                             }
                         }
@@ -1477,15 +1567,34 @@
                 // 更新模态框内容
                 document.getElementById('modalTitle').textContent = phase.phase;
                 document.getElementById('modalSubtitle').textContent = phase.subtitle;
-                document.getElementById('startEmoji').textContent = phase.startEmoji;
-                document.getElementById('startEmotion').textContent = phase.startEmotion;
-                document.getElementById('endEmoji').textContent = phase.endEmoji;
-                document.getElementById('endEmotion').textContent = phase.endEmotion;
                 document.getElementById('intensityValue').textContent = `${phase.intensity}%`;
                 document.getElementById('intensityFill').style.width = `${phase.intensity}%`;
                 document.getElementById('intensityFill').style.backgroundColor = phase.color;
                 document.getElementById('designTarget').textContent = phase.designTarget;
                 document.getElementById('designIntent').textContent = phase.designIntent;
+                
+                // 更新情绪变化展示
+                const emotionFlowContainer = document.getElementById('emotionFlow');
+                emotionFlowContainer.innerHTML = '';
+                
+                phase.emotionFlow.forEach((emotion, idx) => {
+                    // 添加情绪卡片
+                    const emotionCard = document.createElement('div');
+                    emotionCard.className = 'emotion-card';
+                    emotionCard.innerHTML = `
+                        <div class="emotion-emoji">${emotion.emoji}</div>
+                        <div class="emotion-text">${emotion.emotion}</div>
+                    `;
+                    emotionFlowContainer.appendChild(emotionCard);
+                    
+                    // 如果不是最后一个情绪，添加箭头
+                    if (idx < phase.emotionFlow.length - 1) {
+                        const arrow = document.createElement('div');
+                        arrow.className = 'emotion-arrow';
+                        arrow.innerHTML = '→';
+                        emotionFlowContainer.appendChild(arrow);
+                    }
+                });
                 
                 // 更新关键点
                 const keyPointsContainer = document.getElementById('keyPoints');
@@ -1494,20 +1603,54 @@
                 phase.keyPoints.forEach((point, idx) => {
                     const pointElement = document.createElement('div');
                     pointElement.className = 'key-point';
+                    
                     pointElement.innerHTML = `
                         <div class="point-icon">
                             <i class="fas fa-${idx + 1}"></i>
                         </div>
                         <div class="point-content">
-                            <strong>${point.title}</strong>
+                            <div class="point-header">
+                                <div class="point-title">
+                                    <strong>${point.title}</strong>
+                                </div>
+                                <button class="detail-toggle-btn" data-index="${idx}">展开</button>
+                            </div>
                             <p>${point.content}</p>
+                            <div class="detail-container" id="detail-${idx}">
+                                <div class="detail-header">
+                                    <div class="detail-title">${point.title}详细流程</div>
+                                </div>
+                                <div class="detail-content">
+                                    ${point.details}
+                                </div>
+                            </div>
                         </div>
                     `;
                     keyPointsContainer.appendChild(pointElement);
                 });
                 
+                // 为所有详情按钮添加事件监听
+                document.querySelectorAll('.detail-toggle-btn').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const index = this.getAttribute('data-index');
+                        const detailContainer = document.getElementById(`detail-${index}`);
+                        const isActive = detailContainer.classList.contains('active');
+                        
+                        if (isActive) {
+                            detailContainer.classList.remove('active');
+                            this.textContent = '展开';
+                        } else {
+                            detailContainer.classList.add('active');
+                            this.textContent = '收起';
+                        }
+                    });
+                });
+                
                 // 显示模态框
                 modal.style.display = 'flex';
+                
+                // 重置滚动条位置
+                document.querySelector('.modal-content').scrollTop = 0;
             }
             
             // 为图例添加点击事件
